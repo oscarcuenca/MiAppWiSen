@@ -18,8 +18,9 @@ import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.amg_eservices.miappwisen.MisSensores.ui.ActividadListaObjeto;
+import com.amg_eservices.miappwisen.SaltoWeb.WebOficial;
 import com.github.mikephil.charting.charts.LineChart;
-import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
@@ -37,6 +38,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import cz.msebera.android.httpclient.Header;
 
@@ -54,9 +56,13 @@ public class DatosSensor extends AppCompatActivity {
     // Error Msg TextView Object
     TextView errorMsg;
     // Email Edit View Object
+
     private String temeperatura;
+
     ArrayList<Entry> temperature = new ArrayList<>();
-    ArrayList<Entry> humidity = new ArrayList<>();
+    //ArrayList<Entry> humidity = new ArrayList<>();
+    ArrayList<Entry> yVals2 = new ArrayList<>();
+
     LineChart mChart;
 
     @Override
@@ -93,34 +99,28 @@ public class DatosSensor extends AppCompatActivity {
         // set an alternative background color
         mChart.setBackgroundColor(Color.LTGRAY);
 
-        // add data
-        setData();
+
 
         mChart.animateX(2500);
 
-        // get the legend (only possible after setting data)
-        Legend l = mChart.getLegend();
-
-        // modify the legend ...
-        // l.setPosition(LegendPosition.LEFT_OF_CHART);
-        l.setForm(Legend.LegendForm.LINE);
-        l.setTextSize(11f);
-        l.setTextColor(Color.WHITE);
-        l.setPosition(Legend.LegendPosition.BELOW_CHART_LEFT);
-//        l.setYOffset(11f);
 
         XAxis xAxis = mChart.getXAxis();
         xAxis.setTextSize(11f);
+        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+        xAxis.setAxisMaxValue(100f);
+        xAxis.setAxisMinValue(0f);
         xAxis.setTextColor(Color.WHITE);
         xAxis.setDrawGridLines(false);
         xAxis.setDrawAxisLine(false);
 
+        //modify leftYaxis range similarly others
         YAxis leftAxis = mChart.getAxisLeft();
         leftAxis.setTextColor(ColorTemplate.getHoloBlue());
         leftAxis.setAxisMaxValue(100f);
         leftAxis.setAxisMinValue(0f);
-        leftAxis.setDrawGridLines(true);
+        leftAxis.setDrawGridLines(false);
         leftAxis.setGranularityEnabled(true);
+
 
         YAxis rightAxis = mChart.getAxisRight();
         rightAxis.setTextColor(Color.RED);
@@ -130,9 +130,16 @@ public class DatosSensor extends AppCompatActivity {
         rightAxis.setDrawZeroLine(false);
         rightAxis.setGranularityEnabled(false);
 
-        agregarToolbar();
 
+
+
+
+
+        // add data
+        setData();
     }
+
+
 
 
     private void agregarToolbar() {
@@ -176,18 +183,18 @@ public class DatosSensor extends AppCompatActivity {
 */
             case R.id.item_web:
 
-                startActivity(new Intent(this, com.amg_eservices.miappwisen.SaltoWeb.WebOficial.class));
+                startActivity(new Intent(this, WebOficial.class));
                 break;
 
             //fragmentoGenerico = new BlankFragment();
 
 
             case R.id.item_categorias:
-                startActivity(new Intent(this, com.amg_eservices.miappwisen.MisSensores.ui.ActividadListaObjeto.class));
+                startActivity(new Intent(this, ActividadListaObjeto.class));
                 break;
 
             case R.id.item_acceso:
-                startActivity(new Intent(this, com.amg_eservices.miappwisen.RegistroyAcceso.MainActivity.class));
+                startActivity(new Intent(this, MainActivity.class));
                 break;
         }
         if (fragmentoGenerico != null) {
@@ -243,7 +250,8 @@ public class DatosSensor extends AppCompatActivity {
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 // called when response HTTP status is "200 OK"
                 JSONObject jsonobject = null;
-
+                JSONObject dht11JSONbject = null;
+                JSONArray dht11JSONarray = null;
 
 
                 try {
@@ -252,22 +260,20 @@ public class DatosSensor extends AppCompatActivity {
                     //dht11JSONbject = jsonobject.getJSONObject("result");
 
 
-
+                    List<String> allNames = new ArrayList<String>();
                     JSONArray cast = jsonobject.getJSONArray("result");
                     for (int i=0; i<cast.length(); i++) {
                         JSONObject parametrosdht11 = cast.getJSONObject(i);
                         String temperatura = parametrosdht11.getString("temperatura");
                         String humedad = parametrosdht11.getString("humedad");
+                        temperature.add(new Entry(Float.valueOf(i),Float.valueOf(temperatura)));
+                        yVals2.add(new Entry(Float.valueOf(i), Float.valueOf(humedad)));
 
-                        temperature.add(new Entry(Float.valueOf(temperatura),i));
-                        humidity.add(new Entry(Float.valueOf(humedad),i));
-
-
-                        Log.i("Entries", "tempeature " + temperature.size() + " " + "humidity " + humidity.size());
+                        //rrefresh
+                        mChart.notifyDataSetChanged();
                         //Log.i(UtilitiesGlobal.TAG, "onSuccess: loopj " + usuarioiJSONbject);
                         Log.i(UtilitiesGlobal.TAG, "onSuccess: loopj " +"temperatura: "+ temperatura +" humedad: " +humedad);
                     }
-
 
 
                 } catch (JSONException e) {
@@ -281,7 +287,7 @@ public class DatosSensor extends AppCompatActivity {
             public void onFailure(int statusCode, Header[] headers, Throwable e, JSONObject response) {
                 // called when response HTTP status is "4XX" (eg. 401, 403, 404)
                 // Hide Progress Dialog
-               /* prgDialog.hide();*/
+                /*prgDialog.hide();*/
                 // When Http response code is '404'
                 if (statusCode == 404) {
                     Toast.makeText(getApplicationContext(), "Requested resource not found", Toast.LENGTH_LONG).show();
@@ -301,49 +307,52 @@ public class DatosSensor extends AppCompatActivity {
     }
 
     private void setData() {
-
+//data set represents a lin
         LineDataSet set1, set2;
 
-            // create a dataset and give it a type
-            set1 = new LineDataSet(temperature, "Temperature");
+        // create a dataset and give it a type
+        //modifications with colour and stuf
+        set1 = new LineDataSet(temperature, "Temperatur");
+        set1.setAxisDependency(YAxis.AxisDependency.LEFT);
+        set1.setColor(ColorTemplate.getHoloBlue());
+        set1.setCircleColor(Color.WHITE);
+        set1.setLineWidth(2f);
+        set1.setCircleRadius(3f);
+        set1.setFillAlpha(65);
+        set1.setFillColor(ColorTemplate.getHoloBlue());
+        set1.setHighLightColor(Color.rgb(244, 117, 117));
+        set1.setDrawCircleHole(false);
 
-            set1.setAxisDependency(YAxis.AxisDependency.LEFT);
-            set1.setColor(ColorTemplate.getHoloBlue());
-            set1.setCircleColor(Color.WHITE);
-            set1.setLineWidth(2f);
-            set1.setDrawCircleHole(false);
-            set1.setFillAlpha(65);
-            set1.setFillColor(ColorTemplate.getHoloBlue());
-            set1.setHighLightColor(Color.rgb(244, 117, 117));
-            //set1.setFillFormatter(new MyFillFormatter(0f));
-            //set1.setDrawHorizontalHighlightIndicator(false);
-            //set1.setVisible(false);
-            //set1.setCircleHoleColor(Color.WHITE);
+        //set1.setFillFormatter(new MyFillFormatter(0f));
+        //set1.setDrawHorizontalHighlightIndicator(false);
+        //set1.setVisible(false);
+        //set1.setCircleHoleColor(Color.WHITE);
 
-            // create a dataset and give it a type
-            set2 = new LineDataSet(humidity, "Humidity");
-            set2.setAxisDependency(YAxis.AxisDependency.RIGHT);
-            set2.setCircleColor(Color.WHITE);
-            set2.setLineWidth(2f);
-            set2.setCircleRadius(3f);
-            set2.setFillAlpha(65);
-            set2.setDrawCircleHole(false);
-            set2.setFillColor(Color.RED);
-            set2.setDrawCircleHole(false);
-            set2.setHighLightColor(Color.rgb(244, 117, 117));
-            //set2.setFillFormatter(new MyFillFormatter(900f));
+        // create a dataset and give it a type
+        // similar above
+        set2 = new LineDataSet(yVals2, "Humidity");
+        set2.setAxisDependency(YAxis.AxisDependency.RIGHT);
+        set2.setColor(Color.RED);
+        set2.setCircleColor(Color.WHITE);
+        set2.setLineWidth(2f);
+        set2.setCircleRadius(1f);
+        set2.setFillAlpha(65);
+        set2.setFillColor(Color.RED);
+        set2.setDrawCircleHole(false);
+        set2.setHighLightColor(Color.rgb(244, 117, 117));
+        //set2.setFillFormatter(new MyFillFormatter(900f));
 
-            ArrayList<ILineDataSet> dataSets = new ArrayList<ILineDataSet>();
-            dataSets.add(set1); // add the datasets
-            dataSets.add(set2);
+        ArrayList<ILineDataSet> dataSets = new ArrayList<ILineDataSet>();
+        dataSets.add(set1); // add the datasets
+        dataSets.add(set2);
 
-            // create a data object with the datasets
-            LineData data = new LineData(dataSets);
-            data.setValueTextColor(Color.WHITE);
-            data.setValueTextSize(9f);
+        // create a data object with the datasets
+        LineData data = new LineData(dataSets);
+        data.setValueTextColor(Color.WHITE);
+        data.setValueTextSize(9f);
 
-            // set data
-            mChart.setData(data);
-        }
-
+        // set data
+        Log.i("Lists Sizedata",temperature.size() + " and " + yVals2.size());
+        mChart.setData(data);
+    }
 }
