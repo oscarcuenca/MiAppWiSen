@@ -1,0 +1,140 @@
+<resources>
+
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Password</string>
+    <string name="hint_name">Fullname</string>
+    <string name="btn_login">LOGIN</string>
+    <string name="btn_register">REGISTER</string>
+    <string name="btn_link_to_register">Not a member? Sign up now.</string>
+    <string name="btn_link_to_login">Already registred! Login Me.</string>
+    <string name="welcome">Welcome</string>
+    <string name="btn_logout">LOGOUT</string>
+    <string name="name">Fullname</string>
+
+
+    <string name="wisenlogo">WiSen</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="bajo_logo1">Menu Wi-Sen</string>
+    <string name="email">Servicio at al cliente 6669993323</string>
+    <string name="title_activity_menu">MenuActivity</string>
+    <string name="app_name2">Menu Superior</string>
+    <string name="app_name">WiSen</string>
+    <string name="select_menu">Despliegue el menu superior.</string>
+    <string name="btn_go_on">MAIN MENU</string>
+
+    <!-- Titulos actividades -->
+    <string name="titulo_actividad_actividad_objetos">Objetos</string>
+    <string name="titulo_actividad_editar_objeto">Editar objeto</string>
+    <string name="titulo_actividad_insertar_objeto">Añadir nuevo objeto</string>
+
+    <!-- Formulario Actividad inserciÃ³n -->
+    <string name="hint_campo_texto_nombre">Descripción Objeto</string>
+    <string name="hint_campo_texto_marca">Marca</string>
+    <string name="hint_campo_texto_modelo">Modelo</string>
+    <string name="hint_campo_texto_correo">Correo</string>
+    <string name="hint_campo_texto_telefono">Teléfono</string>
+
+    <!-- Tooltips acciones toolbar -->
+    <string name="accion_sync">Sincronizar</string>
+    <string name="accion_eliminar">Eliminar</string>
+    <string name="accion_guardar">Guardar</string>
+    <string name="accion_descartar">Descartar</string>
+
+    <!-- Cuenta Sync Adapter -->
+    <string name="tipo_cuenta">com.amg_eservices.miappwisen.MisSensores.cuenta</string>
+
+    <!-- Autoridad del provider -->
+    <string name="autoridad_provider">com.amg_eservices.miappwisen</string>
+
+    <string name="nombre_objeto">Nombre de Objeto</string>
+
+
+    <string name="Futuro">Sensores Inteligentes online</string>
+    <string name="wisenfuturo">Sensores Inteligentes</string>
+    <string name="Bienvenido">Bienvenido</string>
+    <string name="item_actividad">Actividad</string>
+    <string name="item_mi_cuenta">Mi cuenta</string>
+    <string name="item_mis_sensores">Mis Sensores</string>
+    <string name="tienda">Tienda</string>
+
+
+    <string name="action_settings">Configuración</string>
+    <string name="action_search">Buscar</string>
+    <string name="action_carrito">AÃ±adir al carrito</string>
+
+    <string name="item_inicio">Inicio</string>
+    <string name="item_cuenta">Mi Cuenta</string>
+    <string name="item_categorias">Categorías</string>
+    <string name="item_configuracion">Configuración</string>
+
+
+
+
+    <string name="titulo_tab_perfil">PERFIL</string>
+    <string name="titulo_tab_direcciones">DIRECCIONES</string>
+    <string name="titulo_tab_tarjetas">TARJETAS</string>
+
+    <string name="texto_no_tarjetas">No tienes ninguna tarjeta asociada</string>
+
+    <string name="etiqueta_carrito">Carrito</string>
+
+    <string name="texto_cambiar_contrasena">Cambia tu contraseña</string>
+    <string name="etiqueta_contrasena">Contraseña</string>
+    <string name="etiqueta_info_usuario">Información del usuario</string>
+    <string name="ic_action_secure">Acceso</string>
+    <string name="ic_action_about">Ayuda</string>
+    <string name="ic_action_warning">Alertas</string>
+    <string name="headertext">Atención al cliente Movil y WhatsApp 656643533</string>
+    <string name="despliegue">Despliegue la barra de menu superior para navegar</string>
+    <string name="returning">Regreso Menú Principal</string>
+    <string name="titulo_actividad_lista_objetos">Lista de Objetos/Sensores</string>
+    <string name="titulo_actividad_insertar_objetos">Alta Nuevo Objeto/Sensor</string>
+
+
+    <string name="home_item">Mis Sensores</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="response">Registro correcto</string>
+    <string name="errorResponse">Registro Incorrecto</string>
+    <string name="Registro_exitoso">Registrado. Porfavor inicie su sesión en login</string>
+    <string name="Registro_fallido">Registro fallido</string>
+    <string name="logeo_exitoso">Se ha identificado correctamente</string>
+    <string name="Logeo_exitoso">Se ha registrado correctamente</string>
+    <string name="Conexion_ok_200">200 OK</string>
+    <string name="nav_sub_menu">Utilidades</string>string>
+    <string name="item_web">Web Oficial</string>
+    <string name="fragment_web">Acceso a Web</string>
+
+
+    <string name="hello_world">Hello world!</string>
+
+    <string name="navigation_view_item_1">Main Activity</string>
+    <string name="navigation_view_item_2">Viral Android</string>
+    <string name="navigation_view_item_3">Google</string>
+    <string name="navigation_view_item_4">Viral Android</string>
+    <string name="navigation_view_item_5">Google</string>
+    <string name="navigation_view_item_6">Viral Android</string>
+    <string name="navigation_view_category_1">Sliding Menu</string>
+
+
+    <string name="title">MisSensores</string>
+    <string name="plus">"+"</string>
+    <string name="adduser">"Añade Sensor"</string>
+    <string name="user">"Objeto"</string>
+    <string name="hint">"Entre datos"</string>
+    <string name="save">"Grabar"</string>
+    <string name="cancel">"Cancelar"</string>
+    <string name="adduseractivitylabel">"Añada actividad de Sensor"</string>
+    <string name="drawer_open">"desplegar menu"</string>
+    <string name="drawer_close">"contraer menu</string>
+    <string name="ic_action_save">"Grabar</string>
+    <string name="title_activity_actividad_lista_objeto">Lista Objetos</string>
+    <string name="acceso_datos_sensor">Acceso a datos del sensor</string>
+    <string name="rio">Red de Objetos Interactivos (R.I.O)</string>
+    <string name="acceso_parametros_sensor">Acceso a datos del sensor</string>
+    <string name="idObjeto">Id Objeto</string>
+
+
+</resources>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/btn_login"
+    android:contextClickable="false"
+    android:gravity="center|fill_vertical">
+    <ImageView
+        android:id="@+id/logo_central"
+        android:layout_width="400dp"
+        android:layout_height="150dp"
+        android:contentDescription="@string/app_name"
+        android:src="@drawable/logoredondo"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:foregroundTintMode="src_over" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/Futuro"
+        android:id="@+id/textView"
+        android:layout_below="@+id/logo_central"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="45dp"
+        android:phoneNumber="false"
+        android:textColor="#f9f7f7"
+        android:textSize="20dp"
+        android:textIsSelectable="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/Bienvenido"
+        android:id="@+id/textView2"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:textColor="#ffffff"
+        android:textSize="35dp" />
+
+
+</RelativeLayout>

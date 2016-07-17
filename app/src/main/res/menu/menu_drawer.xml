@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/item_inicio"
+            android:checked="true"
+            android:icon="@drawable/ic_action_share"
+            android:title="@string/item_actividad" />
+
+        <item
+            android:id="@+id/item_categorias"
+            android:icon="@drawable/mis_sensores"
+            android:title="@string/item_mis_sensores" />
+        <item
+            android:id="@+id/item_warning"
+            android:icon="@drawable/ic_action_warning"
+            android:title="@string/ic_action_warning" />
+
+
+
+    </group>
+    <item android:title="@string/nav_sub_menu">
+        <menu>
+            <item
+                android:id="@+id/item_cuenta"
+                android:icon="@drawable/cuenta"
+                android:title="@string/item_mi_cuenta" />
+            <item
+                android:id="@+id/item_configuracion"
+                android:icon="@drawable/tienda"
+                android:title="@string/tienda" />
+            <item
+                android:id="@+id/item_web"
+                android:icon="@drawable/ic_action_web_site"
+                android:title="@string/item_web" />
+
+            <item
+                android:id="@+id/item_acceso"
+                android:icon="@drawable/ic_action_secure"
+                android:title="@string/ic_action_secure" />
+            <item
+                android:id="@+id/item_ayuda"
+                android:icon="@drawable/ic_action_help"
+                android:title="@string/ic_action_about" />
+
+        </menu>
+    </item>
+
+</menu>

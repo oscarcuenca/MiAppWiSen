@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/fondo3">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/rio"
+        android:layout_gravity="center_horizontal"
+        android:textColor="#086c54"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+    <TableRow
+        android:id="@+id/tableRow1"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_marginTop="50dp">
+
+        <ImageButton
+            android:id="@+id/agricultura"
+            android:layout_weight="1" android:background="#00ffffff"
+            android:textColor="#000000"
+            android:src="@drawable/milogo"
+            android:padding="20dip" android:gravity="center"
+            android:layout_gravity="center"
+            android:textAlignment="center" />
+
+        <ImageButton
+            android:id="@+id/agua"
+            android:layout_weight="1" android:background="#00ffffff"
+            android:textColor="#000000"
+            android:src="@drawable/h2o"
+            android:padding="20dip" android:gravity="center"
+            android:layout_gravity="center" />
+
+    </TableRow>
+    <TableRow
+        android:id="@+id/tableRow2"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        >
+
+        <ImageButton
+            android:id="@+id/industria"
+            android:layout_weight="1" android:background="#00ffffff"
+            android:textColor="#000000"
+            android:src="@drawable/bichos"
+            android:padding="20dip" android:gravity="center"
+            android:layout_gravity="center"
+            android:textAlignment="center" />
+
+    </TableRow>
+    <TableRow
+        android:id="@+id/tableRow3"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        >
+
+        <ImageButton
+            android:id="@+id/outdoor"
+            android:layout_weight="1" android:background="#00ffffff"
+            android:textColor="#000000"
+            android:src="@drawable/fabrica"
+            android:padding="20dip" android:gravity="center"
+            android:layout_gravity="center"
+            android:textAlignment="center" />
+
+        <ImageButton
+            android:id="@+id/infraestructuras"
+            android:layout_weight="1" android:background="#00ffffff"
+            android:textColor="#000000"
+            android:src="@drawable/ciudad"
+            android:padding="20dip" android:gravity="center"
+            android:layout_gravity="center" />
+
+    </TableRow>
+</LinearLayout>

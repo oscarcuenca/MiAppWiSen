@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="editTextUserName" type="id">editTextUserName</item>
+    <item name="editTextEmail" type="id">editTextEmail</item>
+    <item name="textUser_pass" type="id">textUser_pass</item>
+
+    <item name="btnRegister" type="id">btnRegister</item>
+    <item name="btnLinkToLoginScreen" type="id">btnLinkToLoginScreen</item>
+    <item name="btnLinkToRegisterScreen" type="id">btnLinkToRegisterScreen</item>
+    <item name="btnLogout" type="id">btnLogout</item>
+    <item name="btnLogin" type="id">btnLogin</item>
+    <item name="Returning" type="id">Returning</item>
+
+
+</resources>

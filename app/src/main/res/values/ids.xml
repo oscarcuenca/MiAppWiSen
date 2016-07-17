@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="contenedor_principal" type="id" />
+    <item name="contenedor_principal_lista_objetos" type="id" />
+    <item name="contenido_principal" type="id" />
+    <item name="coordinador" type="id" />
+    <item name="register_error" type="id">Error de Registro</item>
+    <item name="login_error" type="id">Error al Logearse</item>
+    <item name="activity_main_webview" type="id">Web Oficial</item>
+    <item name="webView" type="id">Web</item>
+    <item name="webView1" type="id">WisenWeb</item>
+
+
+</resources>

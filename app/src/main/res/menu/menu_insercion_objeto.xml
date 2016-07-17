@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+
+    <item
+        android:id="@+id/accion_eliminar"
+        android:icon="@drawable/ic_action_discard"
+        android:title="@string/accion_eliminar"
+        android:visible="true"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/accion_confirmar"
+        android:icon="@drawable/ic_action_save"
+        android:title="@string/accion_guardar"
+        android:visible="true"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_access"
+        android:icon="@drawable/ic_action_storage"
+        android:title="@string/acceso_datos_sensor"
+        android:visible="true"
+        app:showAsAction="ifRoom" />
+
+
+
+</menu>
