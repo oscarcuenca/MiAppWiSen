@@ -21,7 +21,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.amg_eservices.miappwisen.DatosSensor;
+import com.amg_eservices.miappwisen.GeneradorData.DatosSensor;
 import com.amg_eservices.miappwisen.MisSensores.provider.Contrato.Objetos;
 import com.amg_eservices.miappwisen.MisSensores.utilidades.UConsultas;
 import com.amg_eservices.miappwisen.MisSensores.utilidades.UTiempo;

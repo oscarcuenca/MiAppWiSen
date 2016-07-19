@@ -1,4 +1,4 @@
-package com.amg_eservices.miappwisen;
+package com.amg_eservices.miappwisen.GeneradorData;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -17,10 +17,12 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.amg_eservices.miappwisen.MisSensores.ui.ActividadListaObjeto;
+import com.amg_eservices.miappwisen.R;
+import com.amg_eservices.miappwisen.RegistroyAcceso.MainActivity;
 import com.amg_eservices.miappwisen.SaltoWeb.WebOficial;
+import com.amg_eservices.miappwisen.UtilitiesGlobal;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
@@ -29,12 +31,7 @@ import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.github.mikephil.charting.utils.ColorTemplate;
-import com.loopj.android.http.AsyncHttpClient;
-import com.loopj.android.http.JsonHttpResponseHandler;
-import com.loopj.android.http.RequestHandle;
-import com.loopj.android.http.RequestParams;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -42,18 +39,15 @@ import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
-
-import cz.msebera.android.httpclient.Header;
 
 /**
  * Created by Propietario on 04/07/2016.
  */
-public class DatosSensor extends AppCompatActivity {
+public class DatosSensor extends AppCompatActivity implements OnLoopjCompleted {
 
     private DrawerLayout drawerLayout;
 
-    private static final String SENSORS_URL = "http://wi-sen.esy.es/wisen/Sensores/v1/controladores/dht11sensor.php";
+    private OnLoopjCompleted loopjListener;
 
     // Progress Dialog Object
     ProgressDialog prgDialog;
@@ -64,13 +58,15 @@ public class DatosSensor extends AppCompatActivity {
     private String temeperatura;
     private Timestamp timestamp;
 
+
     ArrayList<Entry> temperature = new ArrayList<>();
 
-    ArrayList<Entry> yVals2 = new ArrayList<>();
-
-    ArrayList<String> XAxis = new ArrayList<>();
+    ArrayList<Entry> humidity = new ArrayList<>();
+    ArrayList<String> labels = new ArrayList<>();
 
     LineChart mChart;
+
+    LoopjTasks loopjTasks;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,12 +75,15 @@ public class DatosSensor extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         String idObjeto = (String) getIntent().getExtras().getSerializable("IdentidadEnviada");
 
-        CaptarParametros(idObjeto);
+        loopjTasks = new LoopjTasks(this, this);
+        loopjTasks.CaptarParametros(idObjeto);
+
 
 
         mChart = (LineChart) findViewById(R.id.chart);
 
-
+        int currentTime = (int) System.currentTimeMillis();
+        timestamp = new Timestamp(currentTime);
 
         // no description text
         mChart.setDescription("");
@@ -114,7 +113,6 @@ public class DatosSensor extends AppCompatActivity {
 
 // to draw X-axis for our graph
         ;
-
 
         XAxis xAxis = mChart.getXAxis();
         xAxis.setTextSize(11f);
@@ -146,6 +144,9 @@ public class DatosSensor extends AppCompatActivity {
 
 
         // add data
+        for (int i = 0; i < 480; i++) {
+            labels.add("value "+ String.valueOf(i));
+        }
         setData();
     }
 
@@ -241,97 +242,20 @@ public class DatosSensor extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
     public String parseHours(long millis){
-        return new SimpleDateFormat("hh:mm").format(new Date(millis));
-    }
-    private void CaptarParametros(String idObjeto) {
-
-        AsyncHttpClient client = new AsyncHttpClient();
-
-        RequestParams params = new RequestParams();
-        params.put(UtilitiesGlobal.SENSOR_ID, idObjeto);
-
-        RequestHandle post = client.post(this, SENSORS_URL, params, new JsonHttpResponseHandler() {
-            @Override
-            public void onStart() {
-                // called before request is started
-            }
-
-            @Override
-            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                // called when response HTTP status is "200 OK"
-                JSONObject jsonobject = null;
-                JSONObject dht11JSONbject = null;
-                JSONArray dht11JSONarray = null;
-
-
-                try {
-
-                    jsonobject = new JSONObject(String.valueOf(response));
-                    //dht11JSONbject = jsonobject.getJSONObject("result");
-
-
-                    List<String> allNames = new ArrayList<String>();
-                    JSONArray cast = jsonobject.getJSONArray("result");
-                    for (int i=0; i<cast.length(); i++) {
-                        JSONObject parametrosdht11 = cast.getJSONObject(i);
-                        String temperatura = parametrosdht11.getString("temperatura");
-                        String humedad = parametrosdht11.getString("humedad");
-                        String fecha = parametrosdht11.getString("Insertado");
-                        temperature.add(new Entry(Float.valueOf(i),Float.valueOf(temperatura)));
-                        yVals2.add(new Entry(Float.valueOf(i), Float.valueOf(humedad)));
-                        //labels.add(new Entry(toString(fecha)));
-                        //XAxis.add(parseHours(timestamp.getTime()));
-                        // java.lang.NullPointerException: Attempt to invoke virtual method 'long java.sql.Timestamp.getTime()' on a null object reference
-
-
-
-                        //rrefresh
-                        mChart.notifyDataSetChanged();
-                        // limit the number of visible entries
-                        mChart.setVisibleXRangeMaximum(12);
-
-                        //Log.i(UtilitiesGlobal.TAG, "onSuccess: loopj " + usuarioiJSONbject);
-                        Log.i(UtilitiesGlobal.TAG, "onSuccess: loopj " +"temperatura: "+ temperatura +" humedad: " +humedad +" Fecha Inserción: " + fecha);
-                    }
-
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-
-
-            @Override
-
-            public void onFailure(int statusCode, Header[] headers, Throwable e, JSONObject response) {
-                // called when response HTTP status is "4XX" (eg. 401, 403, 404)
-                // Hide Progress Dialog
-                /*prgDialog.hide();*/
-                // When Http response code is '404'
-                if (statusCode == 404) {
-                    Toast.makeText(getApplicationContext(), "Requested resource not found", Toast.LENGTH_LONG).show();
-                }
-                // When Http response code is '500'
-                else if (statusCode == 500) {
-                    Toast.makeText(getApplicationContext(), "Something went wrong at server end", Toast.LENGTH_LONG).show();
-                }
-                // When Http response code other than 404, 500
-                else {
-                    Toast.makeText(getApplicationContext(), "Unexpected Error occcured! [Most common Error: Device might not be connected to Internet or remote server is not up and running]", Toast.LENGTH_LONG).show();
-                }
-            }
-
-        });
-
+        String currentDate = new SimpleDateFormat("hh:mm").format(new Date(millis));
+        Log.i(UtilitiesGlobal.TAG, "parseHours: " + currentDate);
+        return currentDate;
     }
 
-       private void setData() {
+
+    private void setData() {
 //data set represents a lin
         LineDataSet set1, set2;
 
         // create a dataset and give it a type
         //modifications with colour and stuf
         set1 = new LineDataSet(temperature, "temperature");
+
         set1.setAxisDependency(YAxis.AxisDependency.LEFT);
         set1.setColor(ColorTemplate.getHoloBlue());
         set1.setCircleColor(Color.WHITE);
@@ -350,7 +274,7 @@ public class DatosSensor extends AppCompatActivity {
 
         // create a dataset and give it a type
         // similar above
-        set2 = new LineDataSet(yVals2, "humidity");
+        set2 = new LineDataSet(humidity, "humidity");
         set2.setAxisDependency(YAxis.AxisDependency.RIGHT);
         set2.setColor(Color.RED);
         set2.setCircleColor(Color.WHITE);
@@ -377,11 +301,41 @@ public class DatosSensor extends AppCompatActivity {
         data.setValueTextSize(9f);
 
         // set data
-        Log.i("Lists Sizedata",temperature.size() + " and " + yVals2.size());
+        Log.i("Lists Sizedata",temperature.size() + " and " + humidity.size());
         mChart.setData(data);
         // move to the latest entry
         mChart.moveViewToX(data.getEntryCount());
 
 
+    }
+
+    @Override
+    public void onLoopjTaskCompleted(JSONObject parametrosdht11, int i) {
+        String temperatura = null;
+        String humedad = null;
+        String fecha = null;
+        try {
+            temperatura = parametrosdht11.getString("temperatura");
+            humedad = parametrosdht11.getString("humedad");
+            fecha = parametrosdht11.getString("Insertado");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        temperature.add(new Entry(Float.valueOf(i),Float.valueOf(temperatura)));
+        humidity.add(new Entry(Float.valueOf(i), Float.valueOf(humedad)));
+        Log.i(UtilitiesGlobal.TAG, "onSuccess: FECHA " + fecha);
+        //labels.add(new Entry(toString(fecha)));
+        // XAxis.add(parseHours(timestamp.getTime()));
+        // java.lang.NullPointerException: Attempt to invoke virtual method 'long java.sql.Timestamp.getTime()' on a null object reference
+
+
+
+        //rrefresh
+        mChart.notifyDataSetChanged();
+        // limit the number of visible entries
+        mChart.setVisibleXRangeMaximum(12);
+
+        //Log.i(UtilitiesGlobal.TAG, "onSuccess: loopj " + usuarioiJSONbject);
+        Log.i(UtilitiesGlobal.TAG, "onSuccess: loopj " +"temperatura: "+ temperatura +" humedad: " +humedad +" Fecha Inserción: " + fecha);
     }
 }
