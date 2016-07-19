@@ -36,9 +36,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
 /**
  * Created by Propietario on 04/07/2016.
@@ -62,7 +60,7 @@ public class DatosSensor extends AppCompatActivity implements OnLoopjCompleted {
     ArrayList<Entry> temperature = new ArrayList<>();
 
     ArrayList<Entry> humidity = new ArrayList<>();
-    ArrayList<String> labels = new ArrayList<>();
+
 
     LineChart mChart;
 
@@ -142,12 +140,13 @@ public class DatosSensor extends AppCompatActivity implements OnLoopjCompleted {
         rightAxis.setDrawZeroLine(false);
         rightAxis.setGranularityEnabled(false);
 
-
+/*
         // add data
         for (int i = 0; i < 480; i++) {
             labels.add("value "+ String.valueOf(i));
         }
         setData();
+  */
     }
 
 
@@ -241,12 +240,13 @@ public class DatosSensor extends AppCompatActivity implements OnLoopjCompleted {
         }
         return super.onOptionsItemSelected(item);
     }
+    /*
     public String parseHours(long millis){
         String currentDate = new SimpleDateFormat("hh:mm").format(new Date(millis));
         Log.i(UtilitiesGlobal.TAG, "parseHours: " + currentDate);
         return currentDate;
     }
-
+*/
 
     private void setData() {
 //data set represents a lin
@@ -318,6 +318,7 @@ public class DatosSensor extends AppCompatActivity implements OnLoopjCompleted {
             temperatura = parametrosdht11.getString("temperatura");
             humedad = parametrosdht11.getString("humedad");
             fecha = parametrosdht11.getString("Insertado");
+            //"fecha" is date and time
         } catch (JSONException e) {
             e.printStackTrace();
         }
