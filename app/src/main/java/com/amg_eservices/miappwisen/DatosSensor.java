@@ -2,6 +2,7 @@ package com.amg_eservices.miappwisen;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -37,7 +38,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import cz.msebera.android.httpclient.Header;
@@ -58,10 +62,13 @@ public class DatosSensor extends AppCompatActivity {
     // Email Edit View Object
 
     private String temeperatura;
+    private Timestamp timestamp;
 
     ArrayList<Entry> temperature = new ArrayList<>();
-    //ArrayList<Entry> humidity = new ArrayList<>();
+
     ArrayList<Entry> yVals2 = new ArrayList<>();
+
+    ArrayList<String> XAxis = new ArrayList<>();
 
     LineChart mChart;
 
@@ -69,6 +76,7 @@ public class DatosSensor extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.actividad_datos_sensor);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         String idObjeto = (String) getIntent().getExtras().getSerializable("IdentidadEnviada");
 
         CaptarParametros(idObjeto);
@@ -93,6 +101,7 @@ public class DatosSensor extends AppCompatActivity {
         mChart.setDrawGridBackground(false);
         mChart.setHighlightPerDragEnabled(true);
 
+
         // if disabled, scaling can be done on x- and y-axis separately
         mChart.setPinchZoom(true);
 
@@ -103,43 +112,42 @@ public class DatosSensor extends AppCompatActivity {
 
         mChart.animateX(2500);
 
+// to draw X-axis for our graph
+        ;
+
 
         XAxis xAxis = mChart.getXAxis();
         xAxis.setTextSize(11f);
-        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
-        xAxis.setAxisMaxValue(100f);
+        xAxis.setEnabled(true);
+        xAxis.setPosition(com.github.mikephil.charting.components.XAxis.XAxisPosition.BOTTOM);
+        xAxis.setAxisMaxValue(125f);
         xAxis.setAxisMinValue(0f);
         xAxis.setTextColor(Color.WHITE);
         xAxis.setDrawGridLines(false);
-        xAxis.setDrawAxisLine(false);
+        xAxis.setDrawAxisLine(true);
+        // to draw axis line
 
         //modify leftYaxis range similarly others
         YAxis leftAxis = mChart.getAxisLeft();
         leftAxis.setTextColor(ColorTemplate.getHoloBlue());
-        leftAxis.setAxisMaxValue(100f);
-        leftAxis.setAxisMinValue(0f);
+        leftAxis.setAxisMaxValue(50f);
+        leftAxis.setAxisMinValue(10f);
         leftAxis.setDrawGridLines(false);
         leftAxis.setGranularityEnabled(true);
 
 
         YAxis rightAxis = mChart.getAxisRight();
         rightAxis.setTextColor(Color.RED);
-        rightAxis.setAxisMaxValue(100f);
-        rightAxis.setAxisMinValue(0f);
+        rightAxis.setAxisMaxValue(50f);
+        rightAxis.setAxisMinValue(10f);
         rightAxis.setDrawGridLines(false);
         rightAxis.setDrawZeroLine(false);
         rightAxis.setGranularityEnabled(false);
 
 
-
-
-
-
         // add data
         setData();
     }
-
-
 
 
     private void agregarToolbar() {
@@ -232,7 +240,9 @@ public class DatosSensor extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
+    public String parseHours(long millis){
+        return new SimpleDateFormat("hh:mm").format(new Date(millis));
+    }
     private void CaptarParametros(String idObjeto) {
 
         AsyncHttpClient client = new AsyncHttpClient();
@@ -266,13 +276,22 @@ public class DatosSensor extends AppCompatActivity {
                         JSONObject parametrosdht11 = cast.getJSONObject(i);
                         String temperatura = parametrosdht11.getString("temperatura");
                         String humedad = parametrosdht11.getString("humedad");
+                        String fecha = parametrosdht11.getString("Insertado");
                         temperature.add(new Entry(Float.valueOf(i),Float.valueOf(temperatura)));
                         yVals2.add(new Entry(Float.valueOf(i), Float.valueOf(humedad)));
+                        //labels.add(new Entry(toString(fecha)));
+                        //XAxis.add(parseHours(timestamp.getTime()));
+                        // java.lang.NullPointerException: Attempt to invoke virtual method 'long java.sql.Timestamp.getTime()' on a null object reference
+
+
 
                         //rrefresh
                         mChart.notifyDataSetChanged();
+                        // limit the number of visible entries
+                        mChart.setVisibleXRangeMaximum(12);
+
                         //Log.i(UtilitiesGlobal.TAG, "onSuccess: loopj " + usuarioiJSONbject);
-                        Log.i(UtilitiesGlobal.TAG, "onSuccess: loopj " +"temperatura: "+ temperatura +" humedad: " +humedad);
+                        Log.i(UtilitiesGlobal.TAG, "onSuccess: loopj " +"temperatura: "+ temperatura +" humedad: " +humedad +" Fecha Inserción: " + fecha);
                     }
 
 
@@ -306,13 +325,13 @@ public class DatosSensor extends AppCompatActivity {
 
     }
 
-    private void setData() {
+       private void setData() {
 //data set represents a lin
         LineDataSet set1, set2;
 
         // create a dataset and give it a type
         //modifications with colour and stuf
-        set1 = new LineDataSet(temperature, "Temperatur");
+        set1 = new LineDataSet(temperature, "temperature");
         set1.setAxisDependency(YAxis.AxisDependency.LEFT);
         set1.setColor(ColorTemplate.getHoloBlue());
         set1.setCircleColor(Color.WHITE);
@@ -323,6 +342,7 @@ public class DatosSensor extends AppCompatActivity {
         set1.setHighLightColor(Color.rgb(244, 117, 117));
         set1.setDrawCircleHole(false);
 
+
         //set1.setFillFormatter(new MyFillFormatter(0f));
         //set1.setDrawHorizontalHighlightIndicator(false);
         //set1.setVisible(false);
@@ -330,7 +350,7 @@ public class DatosSensor extends AppCompatActivity {
 
         // create a dataset and give it a type
         // similar above
-        set2 = new LineDataSet(yVals2, "Humidity");
+        set2 = new LineDataSet(yVals2, "humidity");
         set2.setAxisDependency(YAxis.AxisDependency.RIGHT);
         set2.setColor(Color.RED);
         set2.setCircleColor(Color.WHITE);
@@ -342,9 +362,14 @@ public class DatosSensor extends AppCompatActivity {
         set2.setHighLightColor(Color.rgb(244, 117, 117));
         //set2.setFillFormatter(new MyFillFormatter(900f));
 
+
+
+
         ArrayList<ILineDataSet> dataSets = new ArrayList<ILineDataSet>();
         dataSets.add(set1); // add the datasets
         dataSets.add(set2);
+
+
 
         // create a data object with the datasets
         LineData data = new LineData(dataSets);
@@ -354,5 +379,9 @@ public class DatosSensor extends AppCompatActivity {
         // set data
         Log.i("Lists Sizedata",temperature.size() + " and " + yVals2.size());
         mChart.setData(data);
+        // move to the latest entry
+        mChart.moveViewToX(data.getEntryCount());
+
+
     }
 }
