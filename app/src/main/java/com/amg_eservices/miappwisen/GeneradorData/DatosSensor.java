@@ -147,6 +147,7 @@ public class DatosSensor extends AppCompatActivity implements OnLoopjCompleted {
         }
         setData();
   */
+        setData();
     }
 
 
