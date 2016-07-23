@@ -95,9 +95,8 @@ public class DatosSensor extends AppCompatActivity implements OnLoopjCompleted {
         // enable scaling and dragging
         mChart.setDragEnabled(true);
         mChart.setScaleEnabled(true);
-        mChart.setDrawGridBackground(false);
+        mChart.setDrawGridBackground(true);
         mChart.setHighlightPerDragEnabled(true);
-
 
         // if disabled, scaling can be done on x- and y-axis separately
         mChart.setPinchZoom(true);
@@ -139,6 +138,7 @@ public class DatosSensor extends AppCompatActivity implements OnLoopjCompleted {
         rightAxis.setDrawGridLines(false);
         rightAxis.setDrawZeroLine(false);
         rightAxis.setGranularityEnabled(false);
+
 
 /*
         // add data
