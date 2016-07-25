@@ -61,7 +61,7 @@ public class LoopjTasks {
                         loopjListener.onLoopjTaskCompleted(parametrosdht11, i);
 
                     }
-
+                    loopjListener.onLoopComplete();
 
                 } catch (JSONException e) {
                     e.printStackTrace();

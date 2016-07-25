@@ -24,11 +24,13 @@ import com.amg_eservices.miappwisen.RegistroyAcceso.MainActivity;
 import com.amg_eservices.miappwisen.SaltoWeb.WebOficial;
 import com.amg_eservices.miappwisen.UtilitiesGlobal;
 import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.formatter.AxisValueFormatter;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
@@ -37,6 +39,7 @@ import org.json.JSONObject;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Propietario on 04/07/2016.
@@ -57,9 +60,10 @@ public class DatosSensor extends AppCompatActivity implements OnLoopjCompleted {
     private Timestamp timestamp;
 
 
-    ArrayList<Entry> temperature = new ArrayList<>();
+    List<Entry> temperature = new ArrayList<>();
 
-    ArrayList<Entry> humidity = new ArrayList<>();
+    List<Entry> humidity = new ArrayList<>();
+    List<String> dates = new ArrayList<>();
 
 
     LineChart mChart;
@@ -98,6 +102,9 @@ public class DatosSensor extends AppCompatActivity implements OnLoopjCompleted {
         mChart.setDrawGridBackground(true);
         mChart.setHighlightPerDragEnabled(true);
 
+        // limit the number of visible entries
+        mChart.setVisibleXRangeMaximum(5);
+
         // if disabled, scaling can be done on x- and y-axis separately
         mChart.setPinchZoom(true);
 
@@ -117,7 +124,7 @@ public class DatosSensor extends AppCompatActivity implements OnLoopjCompleted {
         xAxis.setPosition(com.github.mikephil.charting.components.XAxis.XAxisPosition.BOTTOM);
         xAxis.setAxisMaxValue(125f);
         xAxis.setAxisMinValue(0f);
-        xAxis.setTextColor(Color.WHITE);
+        xAxis.setTextColor(Color.DKGRAY);
         xAxis.setDrawGridLines(false);
         xAxis.setDrawAxisLine(true);
         // to draw axis line
@@ -147,7 +154,7 @@ public class DatosSensor extends AppCompatActivity implements OnLoopjCompleted {
         }
         setData();
   */
-        setData();
+
     }
 
 
@@ -261,7 +268,7 @@ public class DatosSensor extends AppCompatActivity implements OnLoopjCompleted {
         set1.setColor(ColorTemplate.getHoloBlue());
         set1.setCircleColor(Color.WHITE);
         set1.setLineWidth(2f);
-        set1.setCircleRadius(3f);
+        set1.setCircleRadius(2f);
         set1.setFillAlpha(65);
         set1.setFillColor(ColorTemplate.getHoloBlue());
         set1.setHighLightColor(Color.rgb(244, 117, 117));
@@ -280,7 +287,7 @@ public class DatosSensor extends AppCompatActivity implements OnLoopjCompleted {
         set2.setColor(Color.RED);
         set2.setCircleColor(Color.WHITE);
         set2.setLineWidth(2f);
-        set2.setCircleRadius(1f);
+        set2.setCircleRadius(2f);
         set2.setFillAlpha(65);
         set2.setFillColor(Color.RED);
         set2.setDrawCircleHole(false);
@@ -288,7 +295,17 @@ public class DatosSensor extends AppCompatActivity implements OnLoopjCompleted {
         //set2.setFillFormatter(new MyFillFormatter(900f));
 
 
+        mChart.getXAxis().setValueFormatter(new AxisValueFormatter() {
+            @Override
+            public String getFormattedValue(float value, AxisBase axis) {
+                return dates.get((int) value);
+            }
 
+            @Override
+            public int getDecimalDigits() {
+                return 0;
+            }
+        });
 
         ArrayList<ILineDataSet> dataSets = new ArrayList<ILineDataSet>();
         dataSets.add(set1); // add the datasets
@@ -298,7 +315,7 @@ public class DatosSensor extends AppCompatActivity implements OnLoopjCompleted {
 
         // create a data object with the datasets
         LineData data = new LineData(dataSets);
-        data.setValueTextColor(Color.WHITE);
+        data.setValueTextColor(Color.BLACK);
         data.setValueTextSize(9f);
 
         // set data
@@ -325,6 +342,7 @@ public class DatosSensor extends AppCompatActivity implements OnLoopjCompleted {
         }
         temperature.add(new Entry(Float.valueOf(i),Float.valueOf(temperatura)));
         humidity.add(new Entry(Float.valueOf(i), Float.valueOf(humedad)));
+        dates.add(fecha); // reduce the string to just 12:13 etc
         Log.i(UtilitiesGlobal.TAG, "onSuccess: FECHA " + fecha);
         //labels.add(new Entry(toString(fecha)));
         // XAxis.add(parseHours(timestamp.getTime()));
@@ -332,12 +350,18 @@ public class DatosSensor extends AppCompatActivity implements OnLoopjCompleted {
 
 
 
-        //rrefresh
-        mChart.notifyDataSetChanged();
-        // limit the number of visible entries
-        mChart.setVisibleXRangeMaximum(12);
+        //rrefresh we don't need to refresh since we are setting data after completing task
+        // mChart.notifyDataSetChanged();
+       // mChart.setVisibleXRangeMaximum(12);
 
         //Log.i(UtilitiesGlobal.TAG, "onSuccess: loopj " + usuarioiJSONbject);
         Log.i(UtilitiesGlobal.TAG, "onSuccess: loopj " +"temperatura: "+ temperatura +" humedad: " +humedad +" Fecha Inserción: " + fecha);
+    }
+
+    @Override
+    public void onLoopComplete() {
+        setData();
+        // it takes time to recieve time. so we set the map after loop is complete okay?
+        //mChart.setVisibleXRangeMaximum(5);
     }
 }
