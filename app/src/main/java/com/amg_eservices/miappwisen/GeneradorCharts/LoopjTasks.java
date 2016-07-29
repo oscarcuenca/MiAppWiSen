@@ -1,4 +1,4 @@
-package com.amg_eservices.miappwisen.GeneradorData;
+package com.amg_eservices.miappwisen.GeneradorCharts;
 
         import android.content.Context;
         import android.widget.Toast;

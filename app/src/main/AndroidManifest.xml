@@ -75,13 +75,18 @@
         </activity>
 
         <activity
-            android:name=".GeneradorData.DatosSensor"
+            android:name=".GeneradorCharts.GraficaHumedadTemperatura"
             android:label="@string/titulo_actividad_lista_objetos"
             android:screenOrientation="landscape"
             android:theme="@style/AppTheme.NoActionBar" >
 
         </activity>
 
+        <activity
+            android:name=".GeneradorTablas.ResultadoHumedadTemperatura"
+            android:label="@string/acceso_parametros_sensor"
+            android:theme="@style/AppTheme.NoActionBar" >
+        </activity>
 
         <activity
             android:name="com.amg_eservices.miappwisen.MisSensores.ui.ActividadInsercionObjeto"

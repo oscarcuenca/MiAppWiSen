@@ -1,4 +1,4 @@
-package com.amg_eservices.miappwisen.GeneradorData;
+package com.amg_eservices.miappwisen.GeneradorCharts;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -44,7 +44,7 @@ import java.util.List;
 /**
  * Created by Propietario on 04/07/2016.
  */
-public class DatosSensor extends AppCompatActivity implements OnLoopjCompleted {
+public class GraficaHumedadTemperatura extends AppCompatActivity implements OnLoopjCompleted {
 
     private DrawerLayout drawerLayout;
 
@@ -352,7 +352,7 @@ public class DatosSensor extends AppCompatActivity implements OnLoopjCompleted {
 
         //rrefresh we don't need to refresh since we are setting data after completing task
         // mChart.notifyDataSetChanged();
-       // mChart.setVisibleXRangeMaximum(12);
+        // mChart.setVisibleXRangeMaximum(12);
 
         //Log.i(UtilitiesGlobal.TAG, "onSuccess: loopj " + usuarioiJSONbject);
         Log.i(UtilitiesGlobal.TAG, "onSuccess: loopj " +"temperatura: "+ temperatura +" humedad: " +humedad +" Fecha Inserción: " + fecha);

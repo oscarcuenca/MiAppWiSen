@@ -21,7 +21,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.amg_eservices.miappwisen.GeneradorData.DatosSensor;
+import com.amg_eservices.miappwisen.GeneradorCharts.GraficaHumedadTemperatura;
+import com.amg_eservices.miappwisen.GeneradorTablas.ResultadoHumedadTemperatura;
 import com.amg_eservices.miappwisen.MisSensores.provider.Contrato.Objetos;
 import com.amg_eservices.miappwisen.MisSensores.utilidades.UConsultas;
 import com.amg_eservices.miappwisen.MisSensores.utilidades.UTiempo;
@@ -43,6 +44,7 @@ public class ActividadInsercionObjeto extends AppCompatActivity
     private EditText campoCorreo;
     private EditText campoIdObjeto;
     private Button accesodata;
+    private Button accesotabla;
     public final static String EXTRA_ID = "idObjeto";
     public EditText IdentidadObjeto;
 
@@ -68,7 +70,8 @@ public class ActividadInsercionObjeto extends AppCompatActivity
 
         accesodata = (Button) findViewById(R.id.accesodata);
         accesodata.setOnClickListener(this);
-
+        accesotabla = (Button) findViewById(R.id.accesotabla);
+        accesotabla.setOnClickListener(this);
 
         // Determinar si es detalle
         String uri = getIntent().getStringExtra(URI_OBJETO);
@@ -200,8 +203,14 @@ public class ActividadInsercionObjeto extends AppCompatActivity
 
 
         if (v == accesodata) {
-            Intent i = new Intent(ActividadInsercionObjeto.this, DatosSensor.class);
+            Intent i = new Intent(ActividadInsercionObjeto.this, GraficaHumedadTemperatura.class);
 
+            i.putExtra("IdentidadEnviada", (Serializable) campoIdObjeto.getText().toString());
+            startActivity(i);
+        }
+
+        if (v== accesotabla) {
+            Intent i = new Intent(ActividadInsercionObjeto.this, ResultadoHumedadTemperatura.class);
             i.putExtra("IdentidadEnviada", (Serializable) campoIdObjeto.getText().toString());
             startActivity(i);
         }

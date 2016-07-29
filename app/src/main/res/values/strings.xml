@@ -134,7 +134,17 @@
     <string name="acceso_datos_sensor">Acceso a datos del sensor</string>
     <string name="rio">Red de Objetos Interactivos (R.I.O)</string>
     <string name="acceso_parametros_sensor">Acceso a datos del sensor</string>
+    <string name="acceso_grafica_sensor">Acceso a graficas de datos</string>
     <string name="idObjeto">Id Objeto</string>
-
+    <string name="temperatura_titulo">Temperatura</string>
+    <string name="fecha_registro">Fecha</string>
+    <string name="ultima_entrada">Última Entrada</string>
+    <string name="maximo">Último Máximo</string>
+    <string name="minimo">Último Mínimo</string>
+    <string name="media">Media Acumulada</string>
+    <string name="valor">Valor</string>
+    <string name="parametro">Parámetro</string>
+    <string name="humedad_titulo">Humedad</string>
+    <string name="acceso_datos_365">Datos ultimos 365 días</string>
 
 </resources>
