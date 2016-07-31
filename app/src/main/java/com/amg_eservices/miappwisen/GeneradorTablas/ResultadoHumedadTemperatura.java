@@ -40,12 +40,19 @@ public class ResultadoHumedadTemperatura extends AppCompatActivity implements On
     private String temeperatura;
     private Timestamp timestamp;
     private TextView UltimaTemperatura;
-
+    private String dato;
     List<Map.Entry> temperature = new ArrayList<>();
 
     List<Map.Entry> humidity = new ArrayList<>();
     List<String> dates = new ArrayList<>();
     LoopjTasks loopjTasks;
+    TextView txttemperaturamedia;
+    TextView txttemperaturamaxima;
+    TextView txttemperaturaminima;
+    TextView txthumedadamaxima;
+    TextView txthumedadminima;
+    TextView txthumedadmedia;
+    TextView txtultimaentrada;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,12 +66,23 @@ public class ResultadoHumedadTemperatura extends AppCompatActivity implements On
 
         int currentTime = (int) System.currentTimeMillis();
         timestamp = new Timestamp(currentTime);
-/*
-        String dato = null;
-        UltimaTemperatura = (TextView) findViewById(R.id.ultimaentradas);
-        dato = UltimaTemperatura.getText().toString();
-*/
+
+        txttemperaturamedia = (TextView) findViewById(R.id.ultimaentradas);
         agregarToolbar();
+        txttemperaturamaxima = (TextView) findViewById(R.id.ultimaentradas);
+        agregarToolbar();
+        txttemperaturaminima = (TextView) findViewById(R.id.ultimaentradas);
+        agregarToolbar();
+        txthumedadmedia = (TextView) findViewById(R.id.ultimaentradas);
+        agregarToolbar();
+        txthumedadamaxima = (TextView) findViewById(R.id.ultimaentradas);
+        agregarToolbar();
+        txthumedadminima = (TextView) findViewById(R.id.ultimaentradas);
+        agregarToolbar();
+        txtultimaentrada = (TextView) findViewById(R.id.ultimaentradas);
+        agregarToolbar();
+
+
 
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
@@ -91,6 +109,19 @@ public class ResultadoHumedadTemperatura extends AppCompatActivity implements On
             temperatura = parametrosdht11.getString("temperatura");
             humedad = parametrosdht11.getString("humedad");
             fecha = parametrosdht11.getString("Insertado");
+
+
+            // display product data in EditText
+
+            txttemperaturamedia.setText(temperatura);
+            txttemperaturamaxima.setText(temperatura);
+            txttemperaturaminima.setText(temperatura);
+            txthumedadamaxima.setText(temperatura);
+            txthumedadminima.setText(temperatura);
+            txthumedadminima.setText(temperatura);
+            txthumedadminima.setText(temperatura);
+            txtultimaentrada.setText(temperatura);
+
 
             //"fecha" is date and time
         } catch (JSONException e) {
@@ -138,8 +169,6 @@ public class ResultadoHumedadTemperatura extends AppCompatActivity implements On
         Fragment fragmentoGenerico = null;
 
         FragmentManager fragmentManager = getSupportFragmentManager();
-
-
 
 
         switch (itemDrawer.getItemId()) {
