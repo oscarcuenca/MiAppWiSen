@@ -20,6 +20,10 @@ public class LoopjTasks {
     private com.amg_eservices.miappwisen.GeneradorTablas.OnLoopjCompleted loopjListener;
     private Context context;
 
+    JSONObject temperaturasmaximas;
+    JSONObject temperaturasminimas;
+    JSONObject temperaturasmedias;
+
     public LoopjTasks(Context context, com.amg_eservices.miappwisen.GeneradorTablas.OnLoopjCompleted loopjListener) {
         this.context = context;
         this.loopjListener = loopjListener;
@@ -43,35 +47,51 @@ public class LoopjTasks {
                 // called when response HTTP status is "200 OK"
                 JSONObject jsonobject = null;
                 JSONObject jsonobject2 = null;
-                JSONObject dht11JSONbject = null;
-                JSONArray dht11JSONarray = null;
+
 
 
                 try {
-
+                    String last_temperatura = "";
+                    String last_date = "";
                     jsonobject = new JSONObject(String.valueOf(response));
-                    //dht11JSONbject = jsonobject.getJSONObject("result");
-
-
-                    //List<String> allNames = new ArrayList<String>();
                     JSONObject cast = jsonobject.getJSONObject("result");
+
                     JSONObject cast1 = cast.getJSONObject("temprature");
-
+                    JSONObject cast2 = cast.getJSONObject("last_entry");
                     jsonobject2 = new JSONObject(String.valueOf(cast1));
-                    JSONArray minimos = jsonobject2.getJSONArray("min");
+                    JSONArray temperaturaminima = jsonobject2.getJSONArray("min");
+                    JSONArray temperaturamaxima = jsonobject2.getJSONArray("max");
+                    JSONArray temperaturamedia = jsonobject2.getJSONArray("avg");
 
-                    for (int i=0; i<minimos.length(); i++) {
-                        JSONObject parametrosdht11 = minimos.getJSONObject(i);
+                    last_temperatura = cast2.getString("temperatura");
+                    loopjListener.onLoopjTaskCompleted4(last_temperatura);
+                    last_date = cast2.getString("Insertado");
+                    loopjListener.onLoopjTaskCompleted5(last_date);
 
 
-                        loopjListener.onLoopjTaskCompleted(parametrosdht11, i);
-
+                    for (int i=0; i<temperaturaminima.length(); i++) {
+                        temperaturasminimas = temperaturaminima.getJSONObject(i);
+                        loopjListener.onLoopjTaskCompleted(temperaturasminimas, i);
                     }
                     loopjListener.onLoopComplete();
+
+                    for (int i=0; i<temperaturamaxima.length(); i++) {
+                        temperaturasmaximas = temperaturamaxima.getJSONObject(i);
+                        loopjListener.onLoopjTaskCompleted2(temperaturasmaximas, i);
+                    }
+                    loopjListener.onLoopComplete2();
+
+                    for (int i=0; i<temperaturamedia.length(); i++) {
+                        temperaturasmedias = temperaturamedia.getJSONObject(i);
+                        loopjListener.onLoopjTaskCompleted3(temperaturasmedias, i);
+                    }
+                    loopjListener.onLoopComplete3();
+
 
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+
             }
 
 

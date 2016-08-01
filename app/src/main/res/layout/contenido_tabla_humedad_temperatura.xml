@@ -1,9 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
+    android:id="@+id/tableLayout1"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:shrinkColumns="*"
+    android:stretchColumns="*">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appbar"
@@ -21,30 +22,169 @@
 
     </android.support.design.widget.AppBarLayout>
 
+    <TableRow
+        android:id="@+id/tableRow4"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:gravity="center_horizontal">
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:typeface="serif"
+            android:textSize="18dp"
+            android:text="@string/temperatura_titulo"
+            android:gravity="center"
+            android:layout_span="6"></TextView>
+    </TableRow>
+
+    <TableRow android:background="#6ecec0"
+        android:id="@+id/tableRow1"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent">
+        <TextView
+            android:id="@+id/TextView04"
+            android:text=""></TextView>
+        <TextView
+            android:id="@+id/TextView05"
+            android:text="@string/grados_celsiu"
+            android:textStyle="bold"
+            android:typeface="serif"
+            android:textAlignment="center"
+            android:textColor="#ffffff"
+            android:textSize="16dp"></TextView>
+        <TextView
+            android:id="@+id/TextView03"
+            android:text="@string/fecha_registro"
+            android:textStyle="bold"
+            android:typeface="serif"
+            android:textAlignment="center"
+            android:textColor="#ffffff"
+            android:textIsSelectable="true"
+            android:textSize="16dp"></TextView>
+
+    </TableRow>
+
+    <TableRow
+        android:layout_height="wrap_content"
+        android:id="@+id/tableRow2"
+        android:layout_width="match_parent">
+        <TextView
+            android:text="@string/ultima_entrada"
+            android:id="@+id/textView2"
+            android:textStyle="bold"></TextView>
+        <TextView
+            android:id="@+id/txtultimaentradatemperatura"
+            android:text=""
+            android:gravity="center_horizontal"></TextView>
+        <TextView
+            android:text=""
+            android:id="@+id/txtfechaultimaentrada"
+            android:gravity="center_horizontal"></TextView>
+
+    </TableRow>
+
+    <TableRow
+    android:layout_height="wrap_content"
+    android:id="@+id/tableRow3"
+    android:layout_width="match_parent">
+    <TextView
+        android:id="@+id/textView1"
+        android:text="@string/maximo"
+        android:textStyle="bold"></TextView>
+    <TextView
+        android:id="@+id/txttemperaturamaxima"
+        android:text=""
+        android:gravity="center_horizontal"></TextView>
+    <TextView
+        android:text=""
+        android:id="@+id/fechatemperaturamaxima"
+        android:gravity="center_horizontal"></TextView>
+
+</TableRow>
+
+    <TableRow
+        android:layout_height="wrap_content"
+        android:id="@+id/tableRow5"
+        android:layout_width="match_parent">
+        <TextView
+            android:text="@string/minimo"
+            android:id="@+id/textView3"
+            android:textStyle="bold"></TextView>
+        <TextView
+            android:id="@+id/txttemperaturaminima"
+            android:text=""
+            android:gravity="center_horizontal"></TextView>
+        <TextView
+            android:text=""
+            android:id="@+id/fechatemperaturaminima"
+            android:gravity="center_horizontal"></TextView>
+
+    </TableRow>
+
+    <TableRow
+        android:layout_height="wrap_content"
+        android:id="@+id/tableRow6"
+        android:layout_width="match_parent"/>
+        <TextView
+            android:text="@string/media"
+            android:id="@+id/textView4"
+            android:textStyle="bold"></TextView>
+        <TextView
+            android:id="@+id/txttemperaturamedia"
+            android:text=""
+            android:gravity="center_horizontal"></TextView>
+
+    <TableRow android:background="#FF909090"
+        android:id="@+id/tableRow10"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent">
+        <View
+            android:layout_height="2dip"
+            android:background="#FF909090" />
+
+    </TableRow>
+
+
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hola"
-        android:id="@+id/ultimaentradas" />
+        android:text=""
+        android:id="@+id/txthumedadmedia" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New Text"
-        android:id="@+id/maximo" />
+        android:text=""
+        android:id="@+id/txthumedadamaxima" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:id="@+id/fechahumedadmaxima" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New Text"
-        android:id="@+id/minimo" />
+        android:text=""
+        android:id="@+id/txthumedadminima" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+
+        android:id="@+id/fechahumedadminima" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New Text"
-        android:id="@+id/media" />
+        android:text=""
+
+        android:id="@+id/txtultimaentradahumedad" />
 
 
-</LinearLayout>
+
+</TableLayout>
 

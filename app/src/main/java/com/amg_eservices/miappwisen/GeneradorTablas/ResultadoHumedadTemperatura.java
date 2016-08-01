@@ -22,7 +22,6 @@ import com.amg_eservices.miappwisen.UtilitiesGlobal;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -37,11 +36,12 @@ public class ResultadoHumedadTemperatura extends AppCompatActivity implements On
 
     private OnLoopjCompleted loopjListener;
 
-    private String temeperatura;
-    private Timestamp timestamp;
-    private TextView UltimaTemperatura;
-    private String dato;
-    List<Map.Entry> temperature = new ArrayList<>();
+
+    //private String temeperatura;
+    //private Timestamp timestamp;
+    //private TextView UltimaTemperatura;
+    //private String dato;
+    //List<Map.Entry> temperature = new ArrayList<>();
 
     List<Map.Entry> humidity = new ArrayList<>();
     List<String> dates = new ArrayList<>();
@@ -52,7 +52,13 @@ public class ResultadoHumedadTemperatura extends AppCompatActivity implements On
     TextView txthumedadamaxima;
     TextView txthumedadminima;
     TextView txthumedadmedia;
-    TextView txtultimaentrada;
+    TextView txtultimaentradatemperatura;
+    TextView txtultimaentradahumedad;
+    TextView txtfechaultimaentrada;
+    TextView fechatemperaturamaxima;
+    TextView fechatemperaturaminima;
+    TextView fechahumedadmaxima;
+    TextView fechahumedadminima;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,24 +70,30 @@ public class ResultadoHumedadTemperatura extends AppCompatActivity implements On
         loopjTasks = new LoopjTasks(this, this);
         loopjTasks.CaptarParametros(idObjeto);
 
-        int currentTime = (int) System.currentTimeMillis();
-        timestamp = new Timestamp(currentTime);
+        //int currentTime = (int) System.currentTimeMillis();
+        //timestamp = new Timestamp(currentTime);
 
-        txttemperaturamedia = (TextView) findViewById(R.id.ultimaentradas);
-        agregarToolbar();
-        txttemperaturamaxima = (TextView) findViewById(R.id.ultimaentradas);
-        agregarToolbar();
-        txttemperaturaminima = (TextView) findViewById(R.id.ultimaentradas);
-        agregarToolbar();
-        txthumedadmedia = (TextView) findViewById(R.id.ultimaentradas);
-        agregarToolbar();
-        txthumedadamaxima = (TextView) findViewById(R.id.ultimaentradas);
-        agregarToolbar();
-        txthumedadminima = (TextView) findViewById(R.id.ultimaentradas);
-        agregarToolbar();
-        txtultimaentrada = (TextView) findViewById(R.id.ultimaentradas);
         agregarToolbar();
 
+        txttemperaturamedia = (TextView) findViewById(R.id.txttemperaturamedia);
+
+        txttemperaturamaxima = (TextView) findViewById(R.id.txttemperaturamaxima);
+        fechatemperaturamaxima = (TextView) findViewById(R.id.fechatemperaturamaxima);
+
+        txttemperaturaminima = (TextView) findViewById(R.id.txttemperaturaminima);
+        fechatemperaturaminima = (TextView) findViewById(R.id.fechatemperaturaminima);
+
+        txthumedadmedia = (TextView) findViewById(R.id.txthumedadmedia);
+
+        txthumedadamaxima = (TextView) findViewById(R.id.txthumedadamaxima);
+        fechahumedadmaxima = (TextView) findViewById(R.id.fechahumedadmaxima);
+
+        txthumedadminima = (TextView) findViewById(R.id.txthumedadminima);
+        fechahumedadminima = (TextView) findViewById(R.id.fechahumedadminima);
+
+        txtultimaentradatemperatura = (TextView) findViewById(R.id.txtultimaentradatemperatura);
+        txtultimaentradahumedad = (TextView) findViewById(R.id.txtultimaentradahumedad);
+        txtfechaultimaentrada = (TextView) findViewById(R.id.txtfechaultimaentrada);
 
 
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -98,42 +110,94 @@ public class ResultadoHumedadTemperatura extends AppCompatActivity implements On
 
     }
     @Override
-    public void onLoopjTaskCompleted(JSONObject parametrosdht11, int i) {
-        String temperatura = null;
-        String humedad = null;
-        String fecha = null;
-        String media_temperatura=null;
-        String media_humedad=null;
+    public void onLoopjTaskCompleted(JSONObject temperaturasmaximas, int i) {
+        String temperatura1 = null;
+        String fecha1 = null;
+
+
 
         try {
-            temperatura = parametrosdht11.getString("temperatura");
-            humedad = parametrosdht11.getString("humedad");
-            fecha = parametrosdht11.getString("Insertado");
+            temperatura1 = temperaturasmaximas.getString("temperatura");
+            fecha1 = temperaturasmaximas.getString("Insertado");
 
 
-            // display product data in EditText
+            txttemperaturamaxima.setText(temperatura1);
+            fechatemperaturamaxima.setText(fecha1);
 
-            txttemperaturamedia.setText(temperatura);
-            txttemperaturamaxima.setText(temperatura);
-            txttemperaturaminima.setText(temperatura);
-            txthumedadamaxima.setText(temperatura);
-            txthumedadminima.setText(temperatura);
-            txthumedadminima.setText(temperatura);
-            txthumedadminima.setText(temperatura);
-            txtultimaentrada.setText(temperatura);
 
 
             //"fecha" is date and time
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        //temperature.add(new Entry(Float.valueOf(i), Float.valueOf(temperatura)));
-        //humidity.add(new Entry(Float.valueOf(i), Float.valueOf(humedad)));
-        //dates.add(fecha); // reduce the string to just 12:13 etc
-        //Log.i(UtilitiesGlobal.TAG, "onSuccess: FECHA " + fecha);
 
-        //Log.i(UtilitiesGlobal.TAG, "onSuccess: loopj " + usuarioiJSONbject);
-        Log.i(UtilitiesGlobal.TAG, "onSuccess: loopj " +"temperatura: "+ temperatura +" humedad: " +humedad +" Ultima Entrada: " + fecha);
+        Log.i(UtilitiesGlobal.TAG, "onSuccess: loopj " + "temperatura Máxima: "+ temperatura1 +" " +
+                "Fecha último Máxima: " + fecha1 +" ");
+
+
+    }
+    @Override
+    public void onLoopjTaskCompleted2(JSONObject temperaturasminimas, int i) {
+        String temperatura2 = null;
+        String fecha2 = null;
+
+
+        try {
+            temperatura2 = temperaturasminimas.getString("temperatura");
+            fecha2 = temperaturasminimas.getString("Insertado");
+
+
+            txttemperaturaminima.setText(temperatura2);
+            fechatemperaturaminima.setText(fecha2);
+
+
+            //"fecha" is date and time
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        Log.i(UtilitiesGlobal.TAG, "onSuccess: loopj " + "temperatura Mínima: "+ temperatura2 +" " +
+                "Fecha último Mínima: " + fecha2 +" ");
+
+
+    }
+    @Override
+    public void onLoopjTaskCompleted3(JSONObject temperaturasmedias, int i) {
+        String temperatura3 = null;
+
+        try {
+            temperatura3 = temperaturasmedias.getString("temperatura");
+
+            txttemperaturamedia.setText(temperatura3);
+
+
+
+            //"fecha" is date and time
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        Log.i(UtilitiesGlobal.TAG, "onSuccess: loopj " + "temperatura media acumulada: " + temperatura3 + " ");
+
+    }
+
+    @Override
+    public void onLoopjTaskCompleted4(String last_temperatura) {
+        String temperatura4 = null;
+        temperatura4 = last_temperatura.toString();
+        txtultimaentradatemperatura.setText(temperatura4);
+
+        Log.i(UtilitiesGlobal.TAG, "onSuccess: loopj " + "temperatura ultima: " + temperatura4 + " ");
+
+    }
+    @Override
+    public void onLoopjTaskCompleted5(String last_date) {
+        String ultima_fecha = null;
+        ultima_fecha = last_date.toString();
+        txtfechaultimaentrada.setText(ultima_fecha);
+
+        Log.i(UtilitiesGlobal.TAG, "onSuccess: loopj " + "Feacha temperatura ultima: " + ultima_fecha + " ");
+
     }
 
 
@@ -235,4 +299,33 @@ public class ResultadoHumedadTemperatura extends AppCompatActivity implements On
     public void onLoopComplete() {
 
     }
+
+
+
+    @Override
+    public void onLoopComplete2() {
+
+    }
+
+
+    @Override
+    public void onLoopComplete3() {
+
+    }
+
+
+
+    @Override
+    public void onLoopComplete4() {
+
+    }
+
+
+
+    @Override
+    public void onLoopComplete5() {
+
+    }
+
+
 }
