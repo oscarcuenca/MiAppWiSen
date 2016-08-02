@@ -17,6 +17,15 @@ public interface OnLoopjCompleted {
     void onLoopComplete4();
     void onLoopjTaskCompleted5(String last_date);
     void onLoopComplete5();
+    void onLoopjTaskCompleted6(JSONObject stringArrayList, int i);
+    void onLoopComplete6();
+    void onLoopjTaskCompleted7(JSONObject stringArrayList, int i);
+    void onLoopComplete7();
+    void onLoopjTaskCompleted8(JSONObject stringArrayList, int i);
+    void onLoopComplete8();
+    void onLoopjTaskCompleted9(String last_date);
+    void onLoopComplete9();
+
 }
 
 

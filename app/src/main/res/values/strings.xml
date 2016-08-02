@@ -147,5 +147,6 @@
     <string name="humedad_titulo">Humedad</string>
     <string name="acceso_datos_365">Datos ultimos 365 días</string>
     <string name="grados_celsiu">ºC</string>
+    <string name="humedad_porcentual">%</string>
 
 </resources>

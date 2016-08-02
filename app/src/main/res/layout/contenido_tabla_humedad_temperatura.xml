@@ -146,44 +146,129 @@
 
     </TableRow>
 
-
-
-    <TextView
-        android:layout_width="wrap_content"
+    <TableRow
+        android:id="@+id/tableRow12"
         android:layout_height="wrap_content"
-        android:text=""
-        android:id="@+id/txthumedadmedia" />
+        android:layout_width="match_parent"
+        android:gravity="center_horizontal">
+        <TextView
+            android:id="@+id/textView15"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:typeface="serif"
+            android:textSize="18dp"
+            android:text="@string/humedad_titulo"
+            android:gravity="center"
+            android:layout_span="6"></TextView>
+    </TableRow>
 
-    <TextView
-        android:layout_width="wrap_content"
+    <TableRow android:background="#6ecec0"
+        android:id="@+id/tableRow13"
         android:layout_height="wrap_content"
-        android:text=""
-        android:id="@+id/txthumedadamaxima" />
-    <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent">
+        <TextView
+            android:id="@+id/TextView16"
+            android:text=""></TextView>
+        <TextView
+            android:id="@+id/TextView17"
+            android:text="@string/humedad_porcentual"
+            android:textStyle="bold"
+            android:typeface="serif"
+            android:textAlignment="center"
+            android:textColor="#ffffff"
+            android:textSize="16dp"></TextView>
+        <TextView
+            android:id="@+id/TextView18"
+            android:text="@string/fecha_registro"
+            android:textStyle="bold"
+            android:typeface="serif"
+            android:textAlignment="center"
+            android:textColor="#ffffff"
+            android:textIsSelectable="true"
+            android:textSize="16dp"></TextView>
+
+    </TableRow>
+
+    <TableRow
         android:layout_height="wrap_content"
-        android:text=""
-        android:id="@+id/fechahumedadmaxima" />
+        android:id="@+id/tableRow18"
+        android:layout_width="match_parent">
+        <TextView
+            android:text="@string/ultima_entrada"
+            android:id="@+id/textView19"
+            android:textStyle="bold"></TextView>
+        <TextView
+            android:id="@+id/txtultimaentradahumedad"
+            android:text=""
+            android:gravity="center_horizontal"></TextView>
+        <TextView
+            android:text=""
+            android:id="@+id/txtfechaultimaentrada2"
+            android:gravity="center_horizontal"></TextView>
 
-    <TextView
-        android:layout_width="wrap_content"
+    </TableRow>
+
+    <TableRow
         android:layout_height="wrap_content"
-        android:text=""
-        android:id="@+id/txthumedadminima" />
-    <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/tableRow7"
+        android:layout_width="match_parent">
+        <TextView
+            android:id="@+id/textView21"
+            android:text="@string/minimo"
+            android:textStyle="bold"></TextView>
+        <TextView
+            android:id="@+id/txthumedadamaxima"
+            android:text=""
+            android:gravity="center_horizontal"></TextView>
+        <TextView
+            android:text=""
+            android:id="@+id/fechahumedadmaxima"
+            android:gravity="center_horizontal"></TextView>
+
+    </TableRow>
+
+    <TableRow
         android:layout_height="wrap_content"
-        android:text=""
+        android:id="@+id/tableRow8"
+        android:layout_width="match_parent">
+        <TextView
+            android:text="@string/maximo"
+            android:id="@+id/textView22"
+            android:textStyle="bold"></TextView>
+        <TextView
+            android:id="@+id/txthumedadminima"
+            android:text=""
+            android:gravity="center_horizontal"></TextView>
+        <TextView
+            android:text=""
+            android:id="@+id/fechahumedadminima"
+            android:gravity="center_horizontal"></TextView>
 
-        android:id="@+id/fechahumedadminima" />
+    </TableRow>
 
-    <TextView
-        android:layout_width="wrap_content"
+    <TableRow
         android:layout_height="wrap_content"
+        android:id="@+id/tableRow9"
+        android:layout_width="match_parent"/>
+    <TextView
+        android:text="@string/media"
+        android:id="@+id/textView24"
+        android:textStyle="bold"></TextView>
+    <TextView
+        android:id="@+id/txthumedadmedia"
         android:text=""
+        android:gravity="center_horizontal"></TextView>
 
-        android:id="@+id/txtultimaentradahumedad" />
+    <TableRow android:background="#FF909090"
+        android:id="@+id/tableRow11"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent">
+        <View
+            android:layout_height="2dip"
+            android:background="#FF909090" />
 
+    </TableRow>
 
 
 </TableLayout>
