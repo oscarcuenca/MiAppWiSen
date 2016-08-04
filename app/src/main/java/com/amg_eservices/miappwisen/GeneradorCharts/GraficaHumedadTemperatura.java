@@ -122,7 +122,7 @@ public class GraficaHumedadTemperatura extends AppCompatActivity implements OnLo
         xAxis.setTextSize(11f);
         xAxis.setEnabled(true);
         xAxis.setPosition(com.github.mikephil.charting.components.XAxis.XAxisPosition.BOTTOM);
-        xAxis.setAxisMaxValue(125f);
+        //xAxis.setAxisMaxValue(125f);
         xAxis.setAxisMinValue(0f);
         xAxis.setTextColor(Color.DKGRAY);
         xAxis.setDrawGridLines(false);
@@ -351,7 +351,7 @@ public class GraficaHumedadTemperatura extends AppCompatActivity implements OnLo
 
 
         //rrefresh we don't need to refresh since we are setting data after completing task
-        // mChart.notifyDataSetChanged();
+        mChart.notifyDataSetChanged();
         // mChart.setVisibleXRangeMaximum(12);
 
         //Log.i(UtilitiesGlobal.TAG, "onSuccess: loopj " + usuarioiJSONbject);

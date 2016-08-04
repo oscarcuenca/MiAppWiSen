@@ -32,8 +32,6 @@ public class ResultadoHumedadTemperatura extends AppCompatActivity implements On
 
     private OnLoopjCompleted loopjListener;
 
-    //List<Map.Entry> humidity = new ArrayList<>();
-    //List<String> dates = new ArrayList<>();
     LoopjTasks loopjTasks;
     TextView txttemperaturamedia;
     TextView txttemperaturamaxima;
@@ -59,9 +57,6 @@ public class ResultadoHumedadTemperatura extends AppCompatActivity implements On
 
         loopjTasks = new LoopjTasks(this, this);
         loopjTasks.CaptarParametros(idObjeto);
-
-        //int currentTime = (int) System.currentTimeMillis();
-        //timestamp = new Timestamp(currentTime);
 
         agregarToolbar();
 
