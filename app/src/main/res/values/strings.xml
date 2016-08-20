@@ -141,7 +141,7 @@
     <string name="ultima_entrada">Última Entrada</string>
     <string name="maximo">Último Mínimo</string>
     <string name="minimo">Último Máximo</string>
-    <string name="media">Media Acumulada</string>
+    <string name="media">Media Acumulada desde inicio de toma de datos</string>
     <string name="valor">Valor</string>
     <string name="parametro">Parámetro</string>
     <string name="humedad_titulo">Humedad</string>

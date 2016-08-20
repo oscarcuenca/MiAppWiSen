@@ -13,6 +13,7 @@ public class UtilitiesGlobal {
     //public static final String SENSORS_URL = "http://wi-sen.esy.es/wisen/Sensores/v1/controladores/dht11sensor.php";
     public static final String SENSORS_URL = "http://wi-sen.esy.es/wisen/Sensores/parametros/Dht/DhtConsultas/*";
     public static final String MAXMINAVG_TH_URL = "http://wi-sen.esy.es/wisen/Sensores/parametros/Dht/MaxMinAvLast/*";
+    public static final String MAXMINAVG_BAROMETRO_URL = "http://wi-sen.esy.es/wisen/Sensores/parametros/Barometro/temperatura/HP206CMaxMinAvLast/*";
 
 
 }

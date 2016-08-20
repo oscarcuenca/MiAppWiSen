@@ -1,0 +1,151 @@
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/tableLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:shrinkColumns="*"
+    android:stretchColumns="*">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
+    </android.support.design.widget.AppBarLayout>
+
+    <TableRow
+        android:id="@+id/tableRow4"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:gravity="center_horizontal">
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:typeface="serif"
+            android:textSize="18dp"
+            android:text="@string/temperatura_titulo"
+            android:gravity="center"
+            android:layout_span="6"></TextView>
+    </TableRow>
+
+    <TableRow android:background="#6ecec0"
+        android:id="@+id/tableRow1"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent">
+        <TextView
+            android:id="@+id/TextView04"
+            android:text=""></TextView>
+        <TextView
+            android:id="@+id/TextView05"
+            android:text="@string/grados_celsiu"
+            android:textStyle="bold"
+            android:typeface="serif"
+            android:textAlignment="center"
+            android:textColor="#ffffff"
+            android:textSize="16dp"></TextView>
+        <TextView
+            android:id="@+id/TextView03"
+            android:text="@string/fecha_registro"
+            android:textStyle="bold"
+            android:typeface="serif"
+            android:textAlignment="center"
+            android:textColor="#ffffff"
+            android:textIsSelectable="true"
+            android:textSize="16dp"></TextView>
+
+    </TableRow>
+
+    <TableRow
+        android:layout_height="wrap_content"
+        android:id="@+id/tableRow2"
+        android:layout_width="match_parent">
+        <TextView
+            android:text="@string/ultima_entrada"
+            android:id="@+id/textView2"
+            android:textStyle="bold"></TextView>
+        <TextView
+            android:id="@+id/txtultimaentradatemperaturaB"
+            android:text=""
+            android:gravity="center_horizontal"></TextView>
+        <TextView
+            android:text=""
+            android:id="@+id/txtfechaultimaentradaB"
+            android:gravity="center_horizontal"></TextView>
+
+    </TableRow>
+
+    <TableRow
+        android:layout_height="wrap_content"
+        android:id="@+id/tableRow3"
+        android:layout_width="match_parent">
+        <TextView
+            android:id="@+id/textView1"
+            android:text="@string/maximo"
+            android:textStyle="bold"></TextView>
+        <TextView
+            android:id="@+id/txttemperaturamaximaB"
+            android:text=""
+            android:gravity="center_horizontal"></TextView>
+        <TextView
+            android:text=""
+            android:id="@+id/fechatemperaturamaximaB"
+            android:gravity="center_horizontal"></TextView>
+
+    </TableRow>
+
+    <TableRow
+        android:layout_height="wrap_content"
+        android:id="@+id/tableRow5"
+        android:layout_width="match_parent">
+        <TextView
+            android:text="@string/minimo"
+            android:id="@+id/textView3"
+            android:textStyle="bold"></TextView>
+        <TextView
+            android:id="@+id/txttemperaturaminimaB"
+            android:text=""
+            android:gravity="center_horizontal"></TextView>
+        <TextView
+            android:text=""
+            android:id="@+id/fechatemperaturaminimaB"
+            android:gravity="center_horizontal"></TextView>
+
+    </TableRow>
+
+    <TableRow
+        android:layout_height="wrap_content"
+        android:id="@+id/tableRow6"
+        android:layout_width="match_parent"/>
+    <TextView
+        android:text="@string/media"
+        android:id="@+id/textView4"
+        android:textStyle="bold"></TextView>
+    <TextView
+        android:id="@+id/txttemperaturamediaB"
+        android:text=""
+        android:gravity="center_horizontal"></TextView>
+
+    <TableRow android:background="#FF909090"
+        android:id="@+id/tableRow10"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent">
+        <View
+            android:layout_height="2dip"
+            android:background="#FF909090" />
+
+    </TableRow>
+
+
+</TableLayout>
+

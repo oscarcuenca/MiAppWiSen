@@ -22,11 +22,11 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.amg_eservices.miappwisen.GeneradorCharts.GraficaHumedadTemperatura;
-import com.amg_eservices.miappwisen.GeneradorTablas.ResultadoHumedadTemperatura;
 import com.amg_eservices.miappwisen.MisSensores.provider.Contrato.Objetos;
 import com.amg_eservices.miappwisen.MisSensores.utilidades.UConsultas;
 import com.amg_eservices.miappwisen.MisSensores.utilidades.UTiempo;
 import com.amg_eservices.miappwisen.R;
+import com.amg_eservices.miappwisen.TablasDatos.Barometro.ResultadoHumedadTemperatura1;
 
 import java.io.Serializable;
 
@@ -210,7 +210,7 @@ public class ActividadInsercionObjeto extends AppCompatActivity
         }
 
         if (v== accesotabla) {
-            Intent i = new Intent(ActividadInsercionObjeto.this, ResultadoHumedadTemperatura.class);
+            Intent i = new Intent(ActividadInsercionObjeto.this,ResultadoHumedadTemperatura1.class);
             i.putExtra("IdentidadEnviada", (Serializable) campoIdObjeto.getText().toString());
             startActivity(i);
         }

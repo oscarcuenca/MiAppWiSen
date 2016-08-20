@@ -1,4 +1,4 @@
-package com.amg_eservices.miappwisen.GeneradorTablas;
+package com.amg_eservices.miappwisen.TablasDatos.HumedadTemperatura;
 
 import android.content.Context;
 import android.widget.Toast;
@@ -17,7 +17,7 @@ import cz.msebera.android.httpclient.Header;
 
 public class LoopjTasks {
 
-    private com.amg_eservices.miappwisen.GeneradorTablas.OnLoopjCompleted loopjListener;
+    private OnLoopjCompleted loopjListener;
     private Context context;
 
     JSONObject temperaturasmaximas;
@@ -27,7 +27,7 @@ public class LoopjTasks {
     JSONObject humedadesminimas;
     JSONObject humedadesmedias;
 
-    public LoopjTasks(Context context, com.amg_eservices.miappwisen.GeneradorTablas.OnLoopjCompleted loopjListener) {
+    public LoopjTasks(Context context, OnLoopjCompleted loopjListener) {
         this.context = context;
         this.loopjListener = loopjListener;
     }
@@ -83,8 +83,6 @@ public class LoopjTasks {
 
                     last_humedad = cast2.getString("humedad");
                     loopjListener.onLoopjTaskCompleted9(last_humedad);
-
-
 
 
                     for (int i=0; i<temperaturaminima.length(); i++) {

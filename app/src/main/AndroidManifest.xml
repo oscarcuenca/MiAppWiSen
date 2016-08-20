@@ -83,7 +83,12 @@
         </activity>
 
         <activity
-            android:name=".GeneradorTablas.ResultadoHumedadTemperatura"
+            android:name=".TablasDatos.HumedadTemperatura.ResultadoHumedadTemperatura"
+            android:label="@string/acceso_parametros_sensor"
+            android:theme="@style/AppTheme.NoActionBar" >
+        </activity>
+        <activity
+            android:name=".TablasDatos.Barometro.ResultadoHumedadTemperatura1"
             android:label="@string/acceso_parametros_sensor"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
