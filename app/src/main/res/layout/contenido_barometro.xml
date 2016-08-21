@@ -146,6 +146,251 @@
 
     </TableRow>
 
+    <TableRow
+        android:id="@+id/tableRow11"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:gravity="center_horizontal">
+        <TextView
+            android:id="@+id/textView10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:typeface="serif"
+            android:textSize="18dp"
+            android:text="@string/presion_titulo"
+            android:gravity="center"
+            android:layout_span="6"></TextView>
+    </TableRow>
 
+    <TableRow android:background="#6ecec0"
+        android:id="@+id/tableRow12"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent">
+        <TextView
+            android:id="@+id/TextView11"
+            android:text=""></TextView>
+        <TextView
+            android:id="@+id/TextView12"
+            android:text="@string/presion_mbar"
+            android:textStyle="bold"
+            android:typeface="serif"
+            android:textAlignment="center"
+            android:textColor="#ffffff"
+            android:textSize="16dp"></TextView>
+        <TextView
+            android:id="@+id/TextView13"
+            android:text="@string/fecha_registro"
+            android:textStyle="bold"
+            android:typeface="serif"
+            android:textAlignment="center"
+            android:textColor="#ffffff"
+            android:textIsSelectable="true"
+            android:textSize="16dp"></TextView>
+
+    </TableRow>
+
+    <TableRow
+        android:layout_height="wrap_content"
+        android:id="@+id/tableRow13"
+        android:layout_width="match_parent">
+        <TextView
+            android:text="@string/ultima_entrada"
+            android:id="@+id/textView14"
+            android:textStyle="bold"></TextView>
+        <TextView
+            android:id="@+id/txtultimaentradapresion"
+            android:text=""
+            android:gravity="center_horizontal"></TextView>
+        <TextView
+            android:text=""
+            android:id="@+id/txtfechaultimaentradapresion"
+            android:gravity="center_horizontal"></TextView>
+
+    </TableRow>
+
+    <TableRow
+        android:layout_height="wrap_content"
+        android:id="@+id/tableRow14"
+        android:layout_width="match_parent">
+        <TextView
+            android:id="@+id/textView15"
+            android:text="@string/maximo"
+            android:textStyle="bold"></TextView>
+        <TextView
+            android:id="@+id/txtpresionmaxima"
+            android:text=""
+            android:gravity="center_horizontal"></TextView>
+        <TextView
+            android:text=""
+            android:id="@+id/fechapresionmaxima"
+            android:gravity="center_horizontal"></TextView>
+
+    </TableRow>
+
+    <TableRow
+        android:layout_height="wrap_content"
+        android:id="@+id/tableRow15"
+        android:layout_width="match_parent">
+        <TextView
+            android:text="@string/minimo"
+            android:id="@+id/textView16"
+            android:textStyle="bold"></TextView>
+        <TextView
+            android:id="@+id/txtpresionminima"
+            android:text=""
+            android:gravity="center_horizontal"></TextView>
+        <TextView
+            android:text=""
+            android:id="@+id/fechapresionminima"
+            android:gravity="center_horizontal"></TextView>
+
+    </TableRow>
+
+    <TableRow
+        android:layout_height="wrap_content"
+        android:id="@+id/tableRow16"
+        android:layout_width="match_parent"/>
+    <TextView
+        android:text="@string/media"
+        android:id="@+id/textView17"
+        android:textStyle="bold"></TextView>
+    <TextView
+        android:id="@+id/txtpresionmedia"
+        android:text=""
+        android:gravity="center_horizontal"></TextView>
+
+    <TableRow android:background="#FF909090"
+        android:id="@+id/tableRow17"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent">
+        <View
+            android:layout_height="2dip"
+            android:background="#FF909090" />
+
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/tableRow18"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:gravity="center_horizontal">
+        <TextView
+            android:id="@+id/textView18"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:typeface="serif"
+            android:textSize="18dp"
+            android:text="@string/altitud_titulo"
+            android:gravity="center"
+            android:layout_span="6"></TextView>
+    </TableRow>
+
+    <TableRow android:background="#6ecec0"
+        android:id="@+id/tableRow19"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent">
+        <TextView
+            android:id="@+id/TextView19"
+            android:text=""></TextView>
+        <TextView
+            android:id="@+id/TextView20"
+            android:text="@string/altitud"
+            android:textStyle="bold"
+            android:typeface="serif"
+            android:textAlignment="center"
+            android:textColor="#ffffff"
+            android:textSize="16dp"></TextView>
+        <TextView
+            android:id="@+id/TextView21"
+            android:text="@string/fecha_registro"
+            android:textStyle="bold"
+            android:typeface="serif"
+            android:textAlignment="center"
+            android:textColor="#ffffff"
+            android:textIsSelectable="true"
+            android:textSize="16dp"></TextView>
+
+    </TableRow>
+
+    <TableRow
+        android:layout_height="wrap_content"
+        android:id="@+id/tableRow21"
+        android:layout_width="match_parent">
+        <TextView
+            android:text="@string/ultima_entrada"
+            android:id="@+id/textView23"
+            android:textStyle="bold"></TextView>
+        <TextView
+            android:id="@+id/txtultimaentradaaltitud"
+            android:text=""
+            android:gravity="center_horizontal"></TextView>
+        <TextView
+            android:text=""
+            android:id="@+id/txtfechaultimaentradaaltitud"
+            android:gravity="center_horizontal"></TextView>
+
+    </TableRow>
+
+    <TableRow
+        android:layout_height="wrap_content"
+        android:id="@+id/tableRow22"
+        android:layout_width="match_parent">
+        <TextView
+            android:id="@+id/textView24"
+            android:text="@string/maximo"
+            android:textStyle="bold"></TextView>
+        <TextView
+            android:id="@+id/txtaltitudmaxima"
+            android:text=""
+            android:gravity="center_horizontal"></TextView>
+        <TextView
+            android:text=""
+            android:id="@+id/fechaaltitudmaxima"
+            android:gravity="center_horizontal"></TextView>
+
+    </TableRow>
+
+    <TableRow
+        android:layout_height="wrap_content"
+        android:id="@+id/tableRow23"
+        android:layout_width="match_parent">
+        <TextView
+            android:text="@string/minimo"
+            android:id="@+id/textView25"
+            android:textStyle="bold"></TextView>
+        <TextView
+            android:id="@+id/txtaltitudminima"
+            android:text=""
+            android:gravity="center_horizontal"></TextView>
+        <TextView
+            android:text=""
+            android:id="@+id/fechaaltitudminima"
+            android:gravity="center_horizontal"></TextView>
+
+    </TableRow>
+
+    <TableRow
+        android:layout_height="wrap_content"
+        android:id="@+id/tableRow24"
+        android:layout_width="match_parent"/>
+    <TextView
+        android:text="@string/media"
+        android:id="@+id/textView26"
+        android:textStyle="bold"></TextView>
+    <TextView
+        android:id="@+id/txtaltitudmedia"
+        android:text=""
+        android:gravity="center_horizontal"></TextView>
+
+    <TableRow android:background="#FF909090"
+        android:id="@+id/tableRow25"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent">
+        <View
+            android:layout_height="2dip"
+            android:background="#FF909090" />
+
+    </TableRow>
 </TableLayout>
-

@@ -149,5 +149,9 @@
     <string name="acceso_datos_365">Datos ultimos 365 días</string>
     <string name="grados_celsiu">ºC</string>
     <string name="humedad_porcentual">%</string>
+    <string name="presion_titulo">Presion Atmosférica</string>
+    <string name="presion_mbar">mbar</string>
+    <string name="altitud_titulo">Altitud</string>
+    <string name="altitud">metros</string>
 
 </resources>

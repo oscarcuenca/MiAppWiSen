@@ -1,6 +1,5 @@
 package com.amg_eservices.miappwisen.TablasDatos.Barometro;
 
-import org.json.JSONArray;
 import org.json.JSONObject;
 
 /**
