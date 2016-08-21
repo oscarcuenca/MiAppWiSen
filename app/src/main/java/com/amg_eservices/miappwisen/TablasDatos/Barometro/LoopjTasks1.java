@@ -45,21 +45,23 @@ public class LoopjTasks1 {
             }
 
             @Override
-            public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 // called when response HTTP status is "200 OK"
                 Log.d("Connection: ", ""+statusCode);
                 JSONObject jsonobject = null;
                 JSONObject jsonobject2 = null;
+                JSONObject jsonobject3 = null;
 
 
                 try {
                     String last_temperatura = "";
                     String last_date = "";
+                    String mi_media = "";
 
                     jsonobject = new JSONObject(String.valueOf(response));
                     JSONObject cast = jsonobject.getJSONObject("result");
 
-                    JSONArray cast1 = cast.getJSONArray("temperature");
+                    JSONObject cast1 = cast.getJSONObject("temperature");
                     JSONObject cast2 = cast.getJSONObject("last_entry");
 
                     jsonobject2 = new JSONObject(String.valueOf(cast1));
@@ -67,11 +69,6 @@ public class LoopjTasks1 {
                     JSONArray temperaturamaxima = jsonobject2.getJSONArray("max");
                     JSONArray temperaturamedia = jsonobject2.getJSONArray("avg");
 
-                    last_temperatura = cast2.getString("temperatura");
-                    loopjListener.onLoopjTaskCompleted4(last_temperatura);
-
-                    last_date = cast2.getString("Insertado");
-                    loopjListener.onLoopjTaskCompleted5(last_date);
 
 
                     for (int i=0; i<temperaturaminima.length(); i++) {
@@ -88,9 +85,16 @@ public class LoopjTasks1 {
 
                     for (int i=0; i<temperaturamedia.length(); i++) {
                         temperaturasmedias = temperaturamedia.getJSONObject(i);
-                        loopjListener.onLoopjTaskCompleted3(temperaturasmedias, i);
+                        mi_media = temperaturasmedias.getString("tempmedia");
+                        loopjListener.onLoopjTaskCompleted3(mi_media, i);
                     }
                     loopjListener.onLoopComplete3();
+
+                    last_temperatura = cast2.getString("temperatura");
+                    loopjListener.onLoopjTaskCompleted4(last_temperatura);
+
+                    last_date = cast2.getString("Insertado");
+                    loopjListener.onLoopjTaskCompleted5(last_date);
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -101,7 +105,7 @@ public class LoopjTasks1 {
 
             @Override
 
-            public void onFailure(int statusCode, Header[] headers, String response, Throwable throwable) {
+            public void onFailure(int statusCode, Header[] headers, Throwable e, JSONObject response) {
 
                 Log.d("Failed: ", ""+statusCode);
                 Log.d("Error : ", "" + response);

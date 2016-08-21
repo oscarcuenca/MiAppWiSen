@@ -26,7 +26,7 @@ public interface OnLoopjCompleted1 {
     void onLoopjTaskCompleted10(String temperaturamedia);
     void onLoopComplete10();
 
-    void onLoopjTaskCompleted3(JSONObject temperaturasmedias, int i);
+    void onLoopjTaskCompleted3(String temperaturasmedias, int i);
     void onLoopComplete3();
 }
 

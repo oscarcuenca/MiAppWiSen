@@ -45,7 +45,7 @@ public class ResultadoHumedadTemperatura1 extends AppCompatActivity implements O
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.actividad_tabla_humedad_temperatura);
+        setContentView(R.layout.actividad_barometro);
         Toast.makeText(getApplicationContext(), "Despliegue la barra superior para navegar", Toast.LENGTH_LONG).show();
         String idObjeto = (String) getIntent().getExtras().getSerializable("IdentidadEnviada");
 
@@ -99,8 +99,8 @@ public class ResultadoHumedadTemperatura1 extends AppCompatActivity implements O
             e.printStackTrace();
         }
 
-        Log.i(UtilitiesGlobal.TAG, "onSuccess: loopj " + "temperatura Máxima: "+ temperatura1 +" " +
-                "Fecha último Máxima: " + fecha1 +" ");
+        Log.i(UtilitiesGlobal.TAG, "onSuccess: loopj " + "temperatura Mínima: "+ temperatura1 +" " +
+                "Fecha último Mínima: " + fecha1 +" ");
 
 
     }
@@ -124,8 +124,8 @@ public class ResultadoHumedadTemperatura1 extends AppCompatActivity implements O
             e.printStackTrace();
         }
 
-        Log.i(UtilitiesGlobal.TAG, "onSuccess: loopj " + "temperatura Mínima: "+ temperatura2 +" " +
-                "Fecha último Mínima: " + fecha2 +" ");
+        Log.i(UtilitiesGlobal.TAG, "onSuccess: loopj " + "temperatura Máxima: "+ temperatura2 +" " +
+                "Fecha último Máxima: " + fecha2 +" ");
 
 
     }
@@ -146,12 +146,12 @@ public class ResultadoHumedadTemperatura1 extends AppCompatActivity implements O
     }
 
     @Override
-    public void onLoopjTaskCompleted3(JSONObject temperaturasmedia, int i) {
+    public void onLoopjTaskCompleted3(String temperaturasmedia, int i) {
         String temperatura5 = null;
         temperatura5 = temperaturasmedia.toString();
-        txtultimaentradatemperaturaB.setText(temperatura5);
+        txttemperaturamediaB.setText(temperatura5);
 
-        Log.i(UtilitiesGlobal.TAG, "onSuccess: loopj " + "temperatura ultima: " + temperatura5 + " ");
+        Log.i(UtilitiesGlobal.TAG, "onSuccess: loopj " + "temperatura media: " + temperatura5 + " ");
 
     }
 
@@ -161,7 +161,7 @@ public class ResultadoHumedadTemperatura1 extends AppCompatActivity implements O
         String ultima_fecha = null;
         ultima_fecha = last_date.toString();
         txtfechaultimaentradaB.setText(ultima_fecha);
-        txtfechaultimaentrada2B.setText(ultima_fecha);
+        //txtfechaultimaentrada2B.setText(ultima_fecha);
 
         Log.i(UtilitiesGlobal.TAG, "onSuccess: loopj " + "Feacha temperatura ultima: " + ultima_fecha + " ");
 
