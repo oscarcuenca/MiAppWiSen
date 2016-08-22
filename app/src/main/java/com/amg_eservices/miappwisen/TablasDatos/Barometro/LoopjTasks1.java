@@ -24,7 +24,15 @@ public class LoopjTasks1 {
     JSONObject temperaturasmaximas;
     JSONObject temperaturasminimas;
     JSONObject temperaturasmedias;
+/*
+    JSONObject presionesmaximas;
+    JSONObject presionesminimas;
+    JSONObject presionesmedias;
 
+    JSONObject altitudesmaximas;
+    JSONObject altitudesminimas;
+    JSONObject altitudesmedias;
+*/
 
     public LoopjTasks1(Context context, OnLoopjCompleted1 loopjListener) {
         this.context = context;
@@ -47,16 +55,17 @@ public class LoopjTasks1 {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 // called when response HTTP status is "200 OK"
-                Log.d("Connection: ", ""+statusCode);
+                Log.d("Connection: ", "" + statusCode);
                 JSONObject jsonobject = null;
                 JSONObject jsonobject2 = null;
-                JSONObject jsonobject3 = null;
+
 
 
                 try {
                     String last_temperatura = "";
                     String last_date = "";
                     String mi_media = "";
+
 
                     jsonobject = new JSONObject(String.valueOf(response));
                     JSONObject cast = jsonobject.getJSONObject("result");
@@ -70,20 +79,19 @@ public class LoopjTasks1 {
                     JSONArray temperaturamedia = jsonobject2.getJSONArray("avg");
 
 
-
-                    for (int i=0; i<temperaturaminima.length(); i++) {
+                    for (int i = 0; i < temperaturaminima.length(); i++) {
                         temperaturasminimas = temperaturaminima.getJSONObject(i);
                         loopjListener.onLoopjTaskCompleted(temperaturasminimas, i);
                     }
                     loopjListener.onLoopComplete();
 
-                    for (int i=0; i<temperaturamaxima.length(); i++) {
+                    for (int i = 0; i < temperaturamaxima.length(); i++) {
                         temperaturasmaximas = temperaturamaxima.getJSONObject(i);
                         loopjListener.onLoopjTaskCompleted2(temperaturasmaximas, i);
                     }
                     loopjListener.onLoopComplete2();
 
-                    for (int i=0; i<temperaturamedia.length(); i++) {
+                    for (int i = 0; i < temperaturamedia.length(); i++) {
                         temperaturasmedias = temperaturamedia.getJSONObject(i);
                         mi_media = temperaturasmedias.getString("tempmedia");
                         loopjListener.onLoopjTaskCompleted3(mi_media, i);
@@ -107,7 +115,7 @@ public class LoopjTasks1 {
 
             public void onFailure(int statusCode, Header[] headers, Throwable e, JSONObject response) {
 
-                Log.d("Failed: ", ""+statusCode);
+                Log.d("Failed: ", "" + statusCode);
                 Log.d("Error : ", "" + response);
                 // called when response HTTP status is "4XX" (eg. 401, 403, 404)
                 // Hide Progress Dialog
@@ -129,4 +137,5 @@ public class LoopjTasks1 {
         });
 
     }
+
 }

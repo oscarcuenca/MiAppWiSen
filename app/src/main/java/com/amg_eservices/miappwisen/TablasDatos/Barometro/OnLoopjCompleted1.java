@@ -19,14 +19,12 @@ public interface OnLoopjCompleted1 {
     void onLoopjTaskCompleted5(String last_date);
     void onLoopComplete5();
 
-    void onLoopjTaskCompleted9(String last_date);
-    void onLoopComplete9();
 
-    void onLoopjTaskCompleted10(String temperaturamedia);
-    void onLoopComplete10();
 
     void onLoopjTaskCompleted3(String temperaturasmedias, int i);
     void onLoopComplete3();
+
+
 }
 
 

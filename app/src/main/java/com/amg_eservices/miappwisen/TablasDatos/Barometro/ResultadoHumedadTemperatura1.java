@@ -40,7 +40,26 @@ public class ResultadoHumedadTemperatura1 extends AppCompatActivity implements O
     TextView txtfechaultimaentradaB;
     TextView fechatemperaturamaximaB;
     TextView fechatemperaturaminimaB;
-    TextView txtfechaultimaentrada2B;
+
+    TextView txtpresionmaxima;
+    TextView fechapresionmaxima;
+    TextView txtpresionminima;
+    TextView fechapresionminima;
+    TextView txtultimaentradapresion;
+    TextView txtfechaultimaentradapresion;
+
+    /*
+    respuesta presion
+    {"result":{"pressure":{"min":[{"Id":"2","presion":"0","Insertado":"2016-08-16 16:20:08"},
+    {"Id":"5","presion":"0","Insertado":"2016-08-16 18:09:04"}],"max":[{"Id":"3","presion":"55",
+    "Insertado":"2016-08-16 16:22:14"}],"avg":[{"pressmedia":36}]},"last_entry":{"Id":"8",
+    "presion":"50","Insertado":"2016-08-16 18:28:45"}}}
+    */
+
+    /*
+    idObjeto=C-136a660f-5af4-4d4d-820e-67af81c912ff
+    */
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,14 +77,17 @@ public class ResultadoHumedadTemperatura1 extends AppCompatActivity implements O
 
         txttemperaturamaximaB = (TextView) findViewById(R.id.txttemperaturamaximaB);
         fechatemperaturamaximaB = (TextView) findViewById(R.id.fechatemperaturamaximaB);
-
         txttemperaturaminimaB = (TextView) findViewById(R.id.txttemperaturaminimaB);
         fechatemperaturaminimaB = (TextView) findViewById(R.id.fechatemperaturaminimaB);
-
         txtultimaentradatemperaturaB = (TextView) findViewById(R.id.txtultimaentradatemperaturaB);
-
         txtfechaultimaentradaB = (TextView) findViewById(R.id.txtfechaultimaentradaB);
 
+        txtpresionmaxima = (TextView) findViewById(R.id.txtpresionmaxima);
+        fechapresionmaxima = (TextView) findViewById(R.id.fechapresionmaxima);
+        txtpresionminima = (TextView) findViewById(R.id.txtpresionminima);
+        fechapresionminima = (TextView) findViewById(R.id.fechapresionminima);
+        txtultimaentradapresion = (TextView) findViewById(R.id.txtultimaentradapresion);
+        txtfechaultimaentradapresion = (TextView) findViewById(R.id.txtfechaultimaentradapresion);
 
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
@@ -104,6 +126,7 @@ public class ResultadoHumedadTemperatura1 extends AppCompatActivity implements O
 
 
     }
+
     @Override
     public void onLoopjTaskCompleted2(JSONObject temperaturasminimas, int i) {
         String temperatura2 = null;
@@ -144,6 +167,8 @@ public class ResultadoHumedadTemperatura1 extends AppCompatActivity implements O
     public void onLoopComplete3() {
 
     }
+
+
 
     @Override
     public void onLoopjTaskCompleted3(String temperaturasmedia, int i) {
@@ -286,27 +311,6 @@ public class ResultadoHumedadTemperatura1 extends AppCompatActivity implements O
     public void onLoopComplete5() {
 
     }
-
-    @Override
-    public void onLoopjTaskCompleted9(String last_date) {
-
-    }
-    @Override
-    public void onLoopComplete9() {
-
-    }
-
-    @Override
-    public void onLoopjTaskCompleted10(String temperaturamedia) {
-
-    }
-
-
-    @Override
-    public void onLoopComplete10() {
-
-    }
-
 
 
 
