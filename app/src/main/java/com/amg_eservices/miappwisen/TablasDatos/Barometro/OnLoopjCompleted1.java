@@ -25,6 +25,37 @@ public interface OnLoopjCompleted1 {
     void onLoopComplete3();
 
 
+    void onLoopjTaskCompleted6(JSONObject presionesminimas, int i);
+
+    void onLoopCompleted6();
+
+    void onLoopjTaskCompleted7(JSONObject presionesmaximas, int i);
+
+    void onLoopCompleted7();
+
+    void onLoopjTaskCompleted8(String mi_media_press, int i);
+
+    void onLoopCompleted8();
+
+    void onLoopjTaskCompleted9(String last_presion);
+
+    void onLoopjTaskCompleted10(String last_date_temp);
+
+    void onLoopjTaskCompleted11(JSONObject altitudesminimas, int i);
+
+    void onLoopCompleted10();
+
+    void onLoopjTaskCompleted12(JSONObject altitudesmaximas, int i);
+
+    void onLoopCompleted11();
+
+    void onLoopCompleted12();
+
+    void onLoopjTaskCompleted13(String last_altitud);
+
+    void onLoopjTaskCompleted14(String last_date_alt);
+
+    void onLoopjTaskCompleted15(String mi_media_alt, int i);
 }
 
 
