@@ -96,7 +96,7 @@ public class WebOficial extends AppCompatActivity {
 
 
             case R.id.item_categorias:
-                startActivity(new Intent(this, com.amg_eservices.miappwisen.MisSensores.ui.ActividadListaObjeto.class));
+                startActivity(new Intent(this, com.amg_eservices.miappwisen.ConfiguraSensores.ui.ActividadListaObjeto.class));
                 break;
 
             case R.id.item_acceso:

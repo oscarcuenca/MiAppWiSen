@@ -16,7 +16,7 @@ public class UtilitiesGlobal {
     //public static final String MAXMINAVG_BAROMETRO_URL_TEMPERATURA = "http://wi-sen.esy.es/wisen/Sensores/parametros/Barometro/temperatura/HP206CMaxMinAvLast/*";
     //public static final String MAXMINAVG_BAROMETRO_URL_PRESION = "http://wi-sen.esy.es/wisen/Sensores/parametros/Barometro/presion/HP206CMaxMinAvLast/*";
     //public static final String MAXMINAVG_BAROMETRO_URL_ALTITUD = "http://wi-sen.esy.es/wisen/Sensores/parametros/Barometro/presion/HP206CMaxMinAvLast/*";
-    public static final String BAROMETRO = "http://wi-sen.esy.es/wisen/Sensores/parametros/Barometro/parametros/Barometro/*";
+    public static final String BAROMETRO = "http://wi-sen.esy.es/wisen/Sensores/parametros/Barometro/*";
 
 }
 

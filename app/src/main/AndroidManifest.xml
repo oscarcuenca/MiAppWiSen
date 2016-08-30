@@ -68,7 +68,7 @@
 
 
         <activity
-            android:name="com.amg_eservices.miappwisen.MisSensores.ui.ActividadListaObjeto"
+            android:name="com.amg_eservices.miappwisen.ConfiguraSensores.ui.ActividadListaObjeto"
             android:label="@string/titulo_actividad_lista_objetos"
             android:theme="@style/AppTheme.NoActionBar" >
 
@@ -83,33 +83,33 @@
         </activity>
 
         <activity
-            android:name=".TablasDatos.HumedadTemperatura.ResultadoHumedadTemperatura"
+            android:name=".MisSensores.TablasDatos.HumedadTemperatura.TermomentroDht22"
             android:label="@string/acceso_parametros_sensor"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
         <activity
-            android:name=".TablasDatos.Barometro.ResultadoHumedadTemperatura1"
+            android:name=".MisSensores.TablasDatos.Barometro.Barometro"
             android:label="@string/acceso_parametros_sensor"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
 
         <activity
-            android:name="com.amg_eservices.miappwisen.MisSensores.ui.ActividadInsercionObjeto"
+            android:name="com.amg_eservices.miappwisen.ConfiguraSensores.ui.ActividadInsercionObjeto"
             android:label="@string/titulo_actividad_insertar_objeto"
-            android:parentActivityName="com.amg_eservices.miappwisen.MisSensores.ui.ActividadListaObjeto"
+            android:parentActivityName="com.amg_eservices.miappwisen.ConfiguraSensores.ui.ActividadListaObjeto"
             android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.amg_eservices.miappwisen.MisSensores.ui.ActividadListaObjeto" />
+                android:value="com.amg_eservices.miappwisen.ConfiguraSensores.ui.ActividadListaObjeto" />
         </activity>
 
         <provider
-            android:name="com.amg_eservices.miappwisen.MisSensores.provider.ProviderObjetos"
+            android:name="com.amg_eservices.miappwisen.ConfiguraSensores.provider.ProviderObjetos"
             android:authorities="com.amg_eservices.miappwisen"
             android:enabled="true"
             android:exported="true"/>
         <service
-            android:name="com.amg_eservices.miappwisen.MisSensores.sync.ServicioAutenticacion"
+            android:name="com.amg_eservices.miappwisen.ConfiguraSensores.sync.ServicioAutenticacion"
             android:enabled="true"
             android:exported="true" >
             <intent-filter>
@@ -124,7 +124,7 @@
 
 
         <service
-            android:name="com.amg_eservices.miappwisen.MisSensores.sync.ServicioSincronizacion"
+            android:name="com.amg_eservices.miappwisen.ConfiguraSensores.sync.ServicioSincronizacion"
             android:enabled="true"
             android:exported="true">
             <intent-filter>

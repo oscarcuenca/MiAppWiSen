@@ -18,7 +18,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-import com.amg_eservices.miappwisen.MisSensores.ui.ActividadListaObjeto;
+import com.amg_eservices.miappwisen.ConfiguraSensores.ui.ActividadListaObjeto;
 import com.amg_eservices.miappwisen.R;
 import com.amg_eservices.miappwisen.RegistroyAcceso.MainActivity;
 import com.amg_eservices.miappwisen.SaltoWeb.WebOficial;

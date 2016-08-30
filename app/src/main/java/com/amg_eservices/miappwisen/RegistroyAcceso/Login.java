@@ -160,7 +160,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
 
             case R.id.item_categorias:
-                startActivity(new Intent(this, com.amg_eservices.miappwisen.MisSensores.ui.ActividadListaObjeto.class));
+                startActivity(new Intent(this, com.amg_eservices.miappwisen.ConfiguraSensores.ui.ActividadListaObjeto.class));
                 break;
 
             case R.id.item_acceso:
@@ -330,7 +330,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                Intent intent = new Intent(Login.this, com.amg_eservices.miappwisen.MisSensores.ui.ActividadListaObjeto.class);
+                Intent intent = new Intent(Login.this, com.amg_eservices.miappwisen.ConfiguraSensores.ui.ActividadListaObjeto.class);
                 startActivity(intent);
 
             }
