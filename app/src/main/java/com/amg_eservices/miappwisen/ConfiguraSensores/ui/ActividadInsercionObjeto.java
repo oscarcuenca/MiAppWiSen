@@ -18,12 +18,13 @@ import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 
 import com.amg_eservices.miappwisen.ConfiguraSensores.provider.Contrato.Objetos;
 import com.amg_eservices.miappwisen.ConfiguraSensores.utilidades.UConsultas;
 import com.amg_eservices.miappwisen.ConfiguraSensores.utilidades.UTiempo;
+import com.amg_eservices.miappwisen.GeneradorCharts.GraficaBarometro;
 import com.amg_eservices.miappwisen.GeneradorCharts.GraficaHumedadTemperatura;
 import com.amg_eservices.miappwisen.MisSensores.TablasDatos.Barometro.Barometro;
 import com.amg_eservices.miappwisen.MisSensores.TablasDatos.HumedadTemperatura.TermomentroDht22;
@@ -44,8 +45,8 @@ public class ActividadInsercionObjeto extends AppCompatActivity
     private EditText campoModelo;
     private EditText campoCorreo;
     private EditText campoIdObjeto;
-    private Button accesodata;
-    private Button accesotabla;
+    private ImageButton accesodata;
+    private ImageButton accesotabla;
     public final static String EXTRA_ID = "idObjeto";
     public EditText IdentidadObjeto;
 
@@ -69,9 +70,9 @@ public class ActividadInsercionObjeto extends AppCompatActivity
         campoIdObjeto = (EditText) findViewById(R.id.campo_idObjeto);
 
 
-        accesodata = (Button) findViewById(R.id.accesodata);
+        accesodata = (ImageButton) findViewById(R.id.accesodata);
         accesodata.setOnClickListener(this);
-        accesotabla = (Button) findViewById(R.id.accesotabla);
+        accesotabla = (ImageButton) findViewById(R.id.accesotabla);
         accesotabla.setOnClickListener(this);
 
         // Determinar si es detalle
@@ -204,7 +205,16 @@ public class ActividadInsercionObjeto extends AppCompatActivity
 
 
         if (v == accesodata) {
-            Intent i = new Intent(ActividadInsercionObjeto.this, GraficaHumedadTemperatura.class);
+
+            Class g = null;
+            String nombre = campodescripcionNombre.getText().toString();
+            if (nombre.equals("Barometro")) {
+                g = GraficaBarometro.class;
+            }else {
+                g = GraficaHumedadTemperatura.class;
+            }
+
+            Intent i = new Intent(ActividadInsercionObjeto.this, g);
 
             i.putExtra("IdentidadEnviada", (Serializable) campoIdObjeto.getText().toString());
             startActivity(i);

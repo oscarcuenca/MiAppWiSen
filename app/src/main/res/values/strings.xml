@@ -131,10 +131,10 @@
     <string name="drawer_close">"contraer menu</string>
     <string name="ic_action_save">"Grabar</string>
     <string name="title_activity_actividad_lista_objeto">Lista Objetos</string>
-    <string name="acceso_datos_sensor">Acceso a datos del sensor</string>
+    <string name="acceso_datos_sensor">Datos</string>
     <string name="rio">Red de Objetos Interactivos (R.I.O)</string>
     <string name="acceso_parametros_sensor">Acceso a datos del sensor</string>
-    <string name="acceso_grafica_sensor">Acceso a graficas de datos</string>
+    <string name="acceso_grafica_sensor">Grafica</string>
     <string name="idObjeto">Id Objeto</string>
     <string name="temperatura_titulo">Temperatura</string>
     <string name="fecha_registro">Fecha</string>

@@ -83,6 +83,14 @@
         </activity>
 
         <activity
+            android:name=".GeneradorCharts.GraficaBarometro"
+            android:label="@string/titulo_actividad_lista_objetos"
+            android:screenOrientation="landscape"
+            android:theme="@style/AppTheme.NoActionBar" >
+
+        </activity>
+
+        <activity
             android:name=".MisSensores.TablasDatos.HumedadTemperatura.TermomentroDht22"
             android:label="@string/acceso_parametros_sensor"
             android:theme="@style/AppTheme.NoActionBar" >
