@@ -44,6 +44,9 @@ import java.util.List;
 /**
  * Created by Propietario on 01/09/2016.
  */
+
+
+
 public class GraficaBarometro extends AppCompatActivity implements OnLoopjCompletedBarometro {
 
     private DrawerLayout drawerLayout;
@@ -62,10 +65,13 @@ public class GraficaBarometro extends AppCompatActivity implements OnLoopjComple
 
 
     List<Entry> presiones = new ArrayList<>();
-
     List<Entry> temperaturas = new ArrayList<>();
     List<String> dates = new ArrayList<>();
-
+/*
+    Set<Entry> presiones = new LinkedHashSet<>();
+    Set<Entry> temperaturas = new LinkedHashSet<>();
+    Set<String> dates = new LinkedHashSet<>();
+*/
 
     LineChart mChart;
 
@@ -80,7 +86,6 @@ public class GraficaBarometro extends AppCompatActivity implements OnLoopjComple
 
         loopjTasks = new LoopjTasksBarometro(this, this);
         loopjTasks.CaptarParametros(idObjeto);
-
 
 
         mChart = (LineChart) findViewById(R.id.chartbarometro);
@@ -111,7 +116,6 @@ public class GraficaBarometro extends AppCompatActivity implements OnLoopjComple
 
         // set an alternative background color
         mChart.setBackgroundColor(Color.LTGRAY);
-
 
 
         mChart.animateX(2500);
@@ -148,15 +152,6 @@ public class GraficaBarometro extends AppCompatActivity implements OnLoopjComple
         rightAxis.setDrawZeroLine(false);
         rightAxis.setGranularityEnabled(false);
 
-
-
-/*
-        // add data
-        for (int i = 0; i < 480; i++) {
-            labels.add("value "+ String.valueOf(i));
-        }
-        setData();
-  */
 
     }
 
@@ -278,7 +273,6 @@ public class GraficaBarometro extends AppCompatActivity implements OnLoopjComple
         set1.setDrawCircleHole(false);
 
 
-
         //set1.setFillFormatter(new MyFillFormatter(0f));
         //set1.setDrawHorizontalHighlightIndicator(false);
         //set1.setVisible(false);
@@ -316,8 +310,6 @@ public class GraficaBarometro extends AppCompatActivity implements OnLoopjComple
         dataSets.add(set2);
 
 
-
-
         // create a data object with the datasets
         LineData data = new LineData(dataSets);
         data.setValueTextColor(Color.BLACK);
@@ -334,24 +326,36 @@ public class GraficaBarometro extends AppCompatActivity implements OnLoopjComple
 
     @Override
     public void onLoopjTaskCompletedBarometro(JSONObject parametrosdht11, int i) {
+
+
         String temperatura = null;
         String presion = null;
         String fecha = null;
+        String Id = null;
+
+
+
+
         try {
+
+
             temperatura = parametrosdht11.getString("temperatura");
             presion = parametrosdht11.getString("presion");
             fecha = parametrosdht11.getString("Insertado_temp");
-            //"fecha" is date and time
+            Id = parametrosdht11.getString("Id_temp");
+
+
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        temperaturas.add(new Entry(Float.valueOf(i),Float.valueOf(temperatura)));
+
+
+        temperaturas.add(new Entry(Float.valueOf(i), Float.valueOf(temperatura)));
         presiones.add(new Entry(Float.valueOf(i), Float.valueOf(presion)));
         dates.add(fecha); // reduce the string to just 12:13 etc
-        Log.i(UtilitiesGlobal.TAG, "onSuccess: FECHA " + fecha);
-        //labels.add(new Entry(toString(fecha)));
-        // XAxis.add(parseHours(timestamp.getTime()));
-        // java.lang.NullPointerException: Attempt to invoke virtual method 'long java.sql.Timestamp.getTime()' on a null object reference
+
+
 
 
 
@@ -360,8 +364,12 @@ public class GraficaBarometro extends AppCompatActivity implements OnLoopjComple
         // mChart.setVisibleXRangeMaximum(12);
 
         //Log.i(UtilitiesGlobal.TAG, "onSuccess: loopj " + usuarioiJSONbject);
-        Log.i(UtilitiesGlobal.TAG, "onSuccess: loopj " +"temperatura: "+ temperatura +" presion: " +presion +" Fecha Inserción: " + fecha);
+        Log.i(UtilitiesGlobal.TAG, "onSuccess: loopj " + "temperatura: " + temperatura + " presion: "
+                + presion + " Fecha Inserción: " + fecha);
+
     }
+
+
 
     @Override
     public void onLoopCompleteBarometro() {
@@ -369,4 +377,7 @@ public class GraficaBarometro extends AppCompatActivity implements OnLoopjComple
         // it takes time to recieve time. so we set the map after loop is complete okay?
         //mChart.setVisibleXRangeMaximum(5);
     }
+
+
+
 }

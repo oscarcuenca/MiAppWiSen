@@ -13,9 +13,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import cz.msebera.android.httpclient.Header;
 
 /**
@@ -35,7 +32,7 @@ public class LoopjTasksBarometro {
 
         AsyncHttpClient client = new AsyncHttpClient();
 
-        RequestParams params = new RequestParams();
+        final RequestParams params = new RequestParams();
         params.put(UtilitiesGlobal.SENSOR_ID, idObjeto);
 
         RequestHandle post = client.post(context, UtilitiesGlobal.CONSULTAS_SENSOR, params, new JsonHttpResponseHandler() {
@@ -58,10 +55,15 @@ public class LoopjTasksBarometro {
                     //dht11JSONbject = jsonobject.getJSONObject("result");
 
 
-                    List<String> allNames = new ArrayList<String>();
+                    //List<String> allNames = new ArrayList<String>();
                     JSONArray cast = jsonobject.getJSONArray("result");
+
+
+
                     for (int i=0; i<cast.length(); i++) {
                         JSONObject parametrosdht11 = cast.getJSONObject(i);
+
+
 
 
                         loopjListener.onLoopjTaskCompletedBarometro(parametrosdht11, i);
@@ -72,6 +74,7 @@ public class LoopjTasksBarometro {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+
             }
 
 
@@ -98,4 +101,5 @@ public class LoopjTasksBarometro {
         });
 
     }
+
 }
