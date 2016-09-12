@@ -63,9 +63,6 @@ public class LoopjTasksBarometro {
                     for (int i=0; i<cast.length(); i++) {
                         JSONObject parametrosdht11 = cast.getJSONObject(i);
 
-
-
-
                         loopjListener.onLoopjTaskCompletedBarometro(parametrosdht11, i);
 
                     }

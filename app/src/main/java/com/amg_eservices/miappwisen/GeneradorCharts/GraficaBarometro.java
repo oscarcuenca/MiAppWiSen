@@ -39,7 +39,9 @@ import org.json.JSONObject;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Propietario on 01/09/2016.
@@ -67,11 +69,7 @@ public class GraficaBarometro extends AppCompatActivity implements OnLoopjComple
     List<Entry> presiones = new ArrayList<>();
     List<Entry> temperaturas = new ArrayList<>();
     List<String> dates = new ArrayList<>();
-/*
-    Set<Entry> presiones = new LinkedHashSet<>();
-    Set<Entry> temperaturas = new LinkedHashSet<>();
-    Set<String> dates = new LinkedHashSet<>();
-*/
+    private final Map<Integer, JSONObject> map=new HashMap<Integer, JSONObject>();
 
     LineChart mChart;
 
@@ -327,23 +325,23 @@ public class GraficaBarometro extends AppCompatActivity implements OnLoopjComple
     @Override
     public void onLoopjTaskCompletedBarometro(JSONObject parametrosdht11, int i) {
 
-
         String temperatura = null;
         String presion = null;
         String fecha = null;
         String Id = null;
+        String altitud = null;
+        JSONObject date = null;
 
 
 
 
         try {
 
-
-            temperatura = parametrosdht11.getString("temperatura");
-            presion = parametrosdht11.getString("presion");
-            fecha = parametrosdht11.getString("Insertado_temp");
             Id = parametrosdht11.getString("Id_temp");
-
+            temperatura = parametrosdht11.getString("temperatura");
+            fecha = parametrosdht11.getString("Insertado_temp");
+            presion = parametrosdht11.getString("presion");
+            altitud = parametrosdht11.getString("altitud");
 
 
         } catch (JSONException e) {
@@ -351,13 +349,11 @@ public class GraficaBarometro extends AppCompatActivity implements OnLoopjComple
         }
 
 
+
+
         temperaturas.add(new Entry(Float.valueOf(i), Float.valueOf(temperatura)));
         presiones.add(new Entry(Float.valueOf(i), Float.valueOf(presion)));
         dates.add(fecha); // reduce the string to just 12:13 etc
-
-
-
-
 
         //rrefresh we don't need to refresh since we are setting data after completing task
         mChart.notifyDataSetChanged();
