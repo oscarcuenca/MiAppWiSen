@@ -334,7 +334,7 @@ public class GraficaBarometro extends AppCompatActivity implements OnLoopjComple
     }
 
     @Override
-    public void onLoopjTaskCompletedBarometro(JSONObject parametrosdht11, int i) {
+    public void onLoopjTaskCompletedBarometro(ArrayList<JSONObject> arrayJSONObjects) {
 
         String temperatura = null;
         String presion = null;
@@ -343,38 +343,46 @@ public class GraficaBarometro extends AppCompatActivity implements OnLoopjComple
         String altitud = null;
         JSONObject date = null;
 
-        try {
-            Id = parametrosdht11.getString("Id_temp");
-            temperatura = parametrosdht11.getString("temperatura");
-            fecha = parametrosdht11.getString("Insertado_temp");
-            presion = parametrosdht11.getString("presion");
-            altitud = parametrosdht11.getString("altitud");
-        } catch (JSONException e) {
-            e.printStackTrace();
+        int index = 0;
+
+        for (JSONObject jsonObject : arrayJSONObjects) {
+
+            try {
+                Id = jsonObject.getString("Id_temp");
+                temperatura = jsonObject.getString("temperatura");
+                fecha = jsonObject.getString("Insertado_temp");
+                presion = jsonObject.getString("presion");
+                altitud = jsonObject.getString("altitud");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            Medicion medicion =  new Medicion(temperatura, presion, fecha, Id);
+
+            if (!mediciones.contains(medicion)) {
+                mediciones.add(medicion);
+            }
+
+            temperaturas.add(new Entry(Float.valueOf(index), Float.valueOf(medicion.getTemperatura())));
+            presiones.add(new Entry(Float.valueOf(index), Float.valueOf(medicion.getPresion())));
+            dates.add(fecha); // reduce the string to just 12:13 etc
+            index++;
         }
 
-        Medicion medicion =  new Medicion(temperatura, presion, fecha, Id);
-
-        mediciones.add(medicion);
-        Log.i(TAG, "onLoopjTaskCompletedBarometro: nueva medicion " + medicion.getId());
-
-
-
-        temperaturas.add(new Entry(Float.valueOf(i), Float.valueOf(temperatura)));
-        presiones.add(new Entry(Float.valueOf(i), Float.valueOf(presion)));
-        dates.add(fecha); // reduce the string to just 12:13 etc
+        for (Medicion temporaryMed : mediciones) {
+            Log.i(UtilitiesGlobal.TAG, "onLoopjTaskCompletedBarometro: listado sin dobles "
+                    + temporaryMed.getId());
+            Log.i(UtilitiesGlobal.TAG, "onSuccess: loopj "
+                    + "temperatura: " + temporaryMed.getTemperatura()
+                    + " presion: " + temporaryMed.getPresion()
+                    + " Fecha Inserción: " + temporaryMed.getFecha());
+        }
 
         //rrefresh we don't need to refresh since we are setting data after completing task
         mChart.notifyDataSetChanged();
         // mChart.setVisibleXRangeMaximum(12);
 
-        //Log.i(UtilitiesGlobal.TAG, "onSuccess: loopj " + usuarioiJSONbject);
-        Log.i(UtilitiesGlobal.TAG, "onSuccess: loopj " + "temperatura: " + temperatura + " presion: "
-                + presion + " Fecha Inserción: " + fecha);
-
     }
-
-
 
     @Override
     public void onLoopCompleteBarometro() {

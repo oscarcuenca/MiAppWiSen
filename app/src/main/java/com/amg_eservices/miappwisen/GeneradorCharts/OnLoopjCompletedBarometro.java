@@ -6,12 +6,14 @@ package com.amg_eservices.miappwisen.GeneradorCharts;
 
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+
 
 public interface OnLoopjCompletedBarometro {
 
-    void onLoopjTaskCompletedBarometro(JSONObject stringArrayList, int i);
+    // void onLoopjTaskCompletedBarometro(JSONObject jsonObject, int i);
+    void onLoopjTaskCompletedBarometro(ArrayList<JSONObject> jsonObjectArrayList);
+
+
     void onLoopCompleteBarometro();
-
-
-
 }

@@ -13,6 +13,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+
 import cz.msebera.android.httpclient.Header;
 
 /**
@@ -59,13 +61,15 @@ public class LoopjTasksBarometro {
                     JSONArray cast = jsonobject.getJSONArray("result");
 
 
+                    ArrayList<JSONObject> jsonObjectArrayList = new ArrayList<JSONObject>();
 
                     for (int i=0; i<cast.length(); i++) {
                         JSONObject parametrosdht11 = cast.getJSONObject(i);
 
-                        loopjListener.onLoopjTaskCompletedBarometro(parametrosdht11, i);
+                        jsonObjectArrayList.add(parametrosdht11);
 
                     }
+                    loopjListener.onLoopjTaskCompletedBarometro(jsonObjectArrayList);
                     loopjListener.onLoopCompleteBarometro();
 
                 } catch (JSONException e) {
