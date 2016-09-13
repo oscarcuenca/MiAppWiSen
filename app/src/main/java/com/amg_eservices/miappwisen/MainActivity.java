@@ -1,6 +1,8 @@
 package com.amg_eservices.miappwisen;
 
+import android.annotation.TargetApi;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -12,24 +14,29 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+@TargetApi(Build.VERSION_CODES.M)
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private DrawerLayout drawerLayout;
-
+    private ImageButton accesocaja;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.actividad_principal);
-        Toast.makeText(getApplicationContext(),"Despliegue la barra superior para navegar", Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(), "Despliegue la barra superior para navegar", Toast.LENGTH_LONG).show();
 
         agregarToolbar();
 
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        accesocaja = (ImageButton) findViewById(R.id.industria);
 
+        accesocaja.setOnClickListener(this);
 
         if (navigationView != null) {
             prepararDrawer(navigationView);
@@ -66,13 +73,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
     private void seleccionarItem(MenuItem itemDrawer) {
         Fragment fragmentoGenerico = null;
 
         FragmentManager fragmentManager = getSupportFragmentManager();
-
-
 
 
         switch (itemDrawer.getItemId()) {
@@ -117,7 +121,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_actividad_principal, menu);
@@ -132,5 +135,16 @@ public class MainActivity extends AppCompatActivity {
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+
+    @Override
+    public void onClick(View v) {
+
+        if (v == accesocaja){
+
+                startActivity(new Intent(this, com.amg_eservices.miappwisen.ConfiguraSensores.ui.
+                        ActividadListaObjeto.class));
+            }
     }
 }
