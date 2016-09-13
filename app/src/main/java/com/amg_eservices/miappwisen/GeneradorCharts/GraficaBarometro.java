@@ -39,6 +39,7 @@ import org.json.JSONObject;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 /**
@@ -49,6 +50,7 @@ import java.util.List;
 
 public class GraficaBarometro extends AppCompatActivity implements OnLoopjCompletedBarometro {
 
+    private static final String TAG = "Grafica Barometro";
     private DrawerLayout drawerLayout;
 
     private OnLoopjCompletedBarometro loopjListener;
@@ -76,6 +78,8 @@ public class GraficaBarometro extends AppCompatActivity implements OnLoopjComple
     LineChart mChart;
 
     LoopjTasksBarometro loopjTasks;
+
+    HashSet<Medicion> mediciones;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -121,7 +125,7 @@ public class GraficaBarometro extends AppCompatActivity implements OnLoopjComple
         mChart.animateX(2500);
 
 // to draw X-axis for our graph
-        ;
+
 
         XAxis xAxis = mChart.getXAxis();
         xAxis.setTextSize(11f);
@@ -152,6 +156,8 @@ public class GraficaBarometro extends AppCompatActivity implements OnLoopjComple
         rightAxis.setDrawZeroLine(false);
         rightAxis.setGranularityEnabled(false);
 
+
+        mediciones = new HashSet<>();
 
     }
 
@@ -327,37 +333,28 @@ public class GraficaBarometro extends AppCompatActivity implements OnLoopjComple
     @Override
     public void onLoopjTaskCompletedBarometro(JSONObject parametrosdht11, int i) {
 
-
         String temperatura = null;
         String presion = null;
         String fecha = null;
         String Id = null;
 
-
-
-
         try {
-
-
             temperatura = parametrosdht11.getString("temperatura");
             presion = parametrosdht11.getString("presion");
             fecha = parametrosdht11.getString("Insertado_temp");
             Id = parametrosdht11.getString("Id_temp");
-
-
-
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
+        Medicion medicion =  new Medicion(temperatura, presion, fecha, Id);
+
+        mediciones.add(medicion);
+        Log.i(TAG, "onLoopjTaskCompletedBarometro: nueva medicion " + medicion.getId());
 
         temperaturas.add(new Entry(Float.valueOf(i), Float.valueOf(temperatura)));
         presiones.add(new Entry(Float.valueOf(i), Float.valueOf(presion)));
         dates.add(fecha); // reduce the string to just 12:13 etc
-
-
-
-
 
         //rrefresh we don't need to refresh since we are setting data after completing task
         mChart.notifyDataSetChanged();
