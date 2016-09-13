@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/fondo3">
+    android:weightSum="1">
 
     <TextView
         android:layout_width="wrap_content"
@@ -11,71 +11,88 @@
         android:text="@string/rio"
         android:layout_gravity="center_horizontal"
         android:textColor="#086c54"
-        android:textSize="20dp"
+        android:textSize="35dp"
         android:textStyle="bold" />
 
-    <TableRow
-        android:id="@+id/tableRow1"
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:layout_marginTop="50dp">
 
-        <ImageButton
-            android:id="@+id/agricultura"
-            android:layout_weight="1" android:background="#00ffffff"
-            android:textColor="#000000"
-            android:src="@drawable/milogo"
-            android:padding="20dip" android:gravity="center"
-            android:layout_gravity="center"
-            android:textAlignment="center" />
-
-        <ImageButton
-            android:id="@+id/agua"
-            android:layout_weight="1" android:background="#00ffffff"
-            android:textColor="#000000"
-            android:src="@drawable/h2o"
-            android:padding="20dip" android:gravity="center"
-            android:layout_gravity="center" />
-
-    </TableRow>
     <TableRow
         android:id="@+id/tableRow2"
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        >
+        android:layout_height="242dp"
+        android:layout_width="match_parent">
 
         <ImageButton
             android:id="@+id/industria"
-            android:layout_weight="1" android:background="#00ffffff"
+            android:background="#00ffffff"
             android:textColor="#000000"
-            android:src="@drawable/bichos"
+            android:src="@drawable/wisen_atmp"
             android:padding="20dip" android:gravity="center"
             android:layout_gravity="center"
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
 
     </TableRow>
-    <TableRow
-        android:id="@+id/tableRow3"
-        android:layout_height="wrap_content"
+
+
+
+    <TextView
         android:layout_width="match_parent"
-        >
+        android:layout_height="wrap_content"
+        android:id="@+id/entrada"
+        android:layout_gravity="center_horizontal"
+        android:textColor="#086c54"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:text="@string/entrada"
+        android:textAlignment="center" />
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="103dp"
+        android:layout_gravity="center_horizontal">
 
         <ImageButton
-            android:id="@+id/outdoor"
-            android:layout_weight="1" android:background="#00ffffff"
-            android:textColor="#000000"
-            android:src="@drawable/fabrica"
-            android:padding="20dip" android:gravity="center"
-            android:layout_gravity="center"
-            android:textAlignment="center" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/wisen_outdoor"
+            android:src="@drawable/wisen_outdoor"
+            android:layout_row="1"
+            android:layout_column="3"
+            android:background="#ffffff" />
 
         <ImageButton
-            android:id="@+id/infraestructuras"
-            android:layout_weight="1" android:background="#00ffffff"
-            android:textColor="#000000"
-            android:src="@drawable/ciudad"
-            android:padding="20dip" android:gravity="center"
-            android:layout_gravity="center" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/wisen_indoor"
+            android:src="@drawable/wisen_indoor"
+            android:layout_row="1"
+            android:layout_column="4"
+            android:background="#ffffff"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="50dp" />
 
-    </TableRow>
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/h2o"
+            android:id="@+id/h2o"
+            android:layout_row="1"
+            android:layout_column="2"
+            android:background="#ffffff" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/milogo"
+            android:src="@drawable/milogo"
+            android:layout_row="1"
+            android:layout_column="1"
+            android:adjustViewBounds="true"
+            android:background="#ffffff" />
+    </GridLayout>
+
+
 </LinearLayout>
+
+

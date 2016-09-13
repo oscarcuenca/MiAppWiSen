@@ -273,7 +273,7 @@ public class GraficaHumedadTemperatura extends AppCompatActivity implements OnLo
         set1.setFillColor(ColorTemplate.getHoloBlue());
         set1.setHighLightColor(Color.rgb(244, 117, 117));
         set1.setDrawCircleHole(false);
-
+        set1.setMode(LineDataSet.Mode.CUBIC_BEZIER);
 
         //set1.setFillFormatter(new MyFillFormatter(0f));
         //set1.setDrawHorizontalHighlightIndicator(false);
@@ -292,6 +292,7 @@ public class GraficaHumedadTemperatura extends AppCompatActivity implements OnLo
         set2.setFillColor(Color.RED);
         set2.setDrawCircleHole(false);
         set2.setHighLightColor(Color.rgb(244, 117, 117));
+        set2.setMode(LineDataSet.Mode.CUBIC_BEZIER);
         //set2.setFillFormatter(new MyFillFormatter(900f));
 
 

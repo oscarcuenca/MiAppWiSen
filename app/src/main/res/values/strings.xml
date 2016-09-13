@@ -132,7 +132,7 @@
     <string name="ic_action_save">"Grabar</string>
     <string name="title_activity_actividad_lista_objeto">Lista Objetos</string>
     <string name="acceso_datos_sensor">Datos</string>
-    <string name="rio">Red de Objetos Interactivos (R.I.O)</string>
+    <string name="rio">WiSen-Admph</string>
     <string name="acceso_parametros_sensor">Acceso a datos del sensor</string>
     <string name="acceso_grafica_sensor">Grafica</string>
     <string name="idObjeto">Id Objeto</string>
@@ -153,5 +153,6 @@
     <string name="presion_mbar">mbar</string>
     <string name="altitud_titulo">Altitud</string>
     <string name="altitud">metros</string>
+    <string name="entrada">Otros Sensores</string>
 
 </resources>

@@ -34,6 +34,7 @@ import com.github.mikephil.charting.formatter.AxisValueFormatter;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -69,11 +70,7 @@ public class GraficaBarometro extends AppCompatActivity implements OnLoopjComple
     List<Entry> presiones = new ArrayList<>();
     List<Entry> temperaturas = new ArrayList<>();
     List<String> dates = new ArrayList<>();
-/*
-    Set<Entry> presiones = new LinkedHashSet<>();
-    Set<Entry> temperaturas = new LinkedHashSet<>();
-    Set<String> dates = new LinkedHashSet<>();
-*/
+
 
     LineChart mChart;
 
@@ -112,6 +109,7 @@ public class GraficaBarometro extends AppCompatActivity implements OnLoopjComple
         mChart.setDrawGridBackground(true);
         mChart.setHighlightPerDragEnabled(true);
 
+
         // limit the number of visible entries
         mChart.setVisibleXRangeMaximum(5);
 
@@ -136,6 +134,7 @@ public class GraficaBarometro extends AppCompatActivity implements OnLoopjComple
         xAxis.setTextColor(Color.DKGRAY);
         xAxis.setDrawGridLines(false);
         xAxis.setDrawAxisLine(true);
+
 
         // to draw axis line
 
@@ -261,13 +260,13 @@ public class GraficaBarometro extends AppCompatActivity implements OnLoopjComple
 */
 
     private void setData() {
+
 //data set represents a lin
         LineDataSet set1, set2;
 
         // create a dataset and give it a type
         //modifications with colour and stuf
         set1 = new LineDataSet(temperaturas, "temperatura");
-
         set1.setAxisDependency(YAxis.AxisDependency.LEFT);
         set1.setColor(ColorTemplate.getHoloBlue());
         set1.setCircleColor(Color.WHITE);
@@ -277,8 +276,8 @@ public class GraficaBarometro extends AppCompatActivity implements OnLoopjComple
         set1.setFillColor(ColorTemplate.getHoloBlue());
         set1.setHighLightColor(Color.rgb(244, 117, 117));
         set1.setDrawCircleHole(false);
-
-
+        set1.setCircleRadius(3f);
+        set1.setMode(LineDataSet.Mode.CUBIC_BEZIER);
         //set1.setFillFormatter(new MyFillFormatter(0f));
         //set1.setDrawHorizontalHighlightIndicator(false);
         //set1.setVisible(false);
@@ -296,12 +295,15 @@ public class GraficaBarometro extends AppCompatActivity implements OnLoopjComple
         set2.setFillColor(Color.RED);
         set2.setDrawCircleHole(false);
         set2.setHighLightColor(Color.rgb(244, 117, 117));
+        set2.setMode(LineDataSet.Mode.CUBIC_BEZIER);
+
         //set2.setFillFormatter(new MyFillFormatter(900f));
 
 
         mChart.getXAxis().setValueFormatter(new AxisValueFormatter() {
             @Override
             public String getFormattedValue(float value, AxisBase axis) {
+
                 return dates.get((int) value);
             }
 
@@ -321,6 +323,7 @@ public class GraficaBarometro extends AppCompatActivity implements OnLoopjComple
         data.setValueTextColor(Color.BLACK);
         data.setValueTextSize(9f);
 
+
         // set data
         Log.i("Lists Sizedata", temperaturas.size() + " and " + presiones.size());
         mChart.setData(data);
@@ -337,12 +340,15 @@ public class GraficaBarometro extends AppCompatActivity implements OnLoopjComple
         String presion = null;
         String fecha = null;
         String Id = null;
+        String altitud = null;
+        JSONObject date = null;
 
         try {
-            temperatura = parametrosdht11.getString("temperatura");
-            presion = parametrosdht11.getString("presion");
-            fecha = parametrosdht11.getString("Insertado_temp");
             Id = parametrosdht11.getString("Id_temp");
+            temperatura = parametrosdht11.getString("temperatura");
+            fecha = parametrosdht11.getString("Insertado_temp");
+            presion = parametrosdht11.getString("presion");
+            altitud = parametrosdht11.getString("altitud");
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -351,6 +357,8 @@ public class GraficaBarometro extends AppCompatActivity implements OnLoopjComple
 
         mediciones.add(medicion);
         Log.i(TAG, "onLoopjTaskCompletedBarometro: nueva medicion " + medicion.getId());
+
+
 
         temperaturas.add(new Entry(Float.valueOf(i), Float.valueOf(temperatura)));
         presiones.add(new Entry(Float.valueOf(i), Float.valueOf(presion)));
