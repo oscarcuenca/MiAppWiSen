@@ -111,7 +111,7 @@ public class GraficaBarometro extends AppCompatActivity implements OnLoopjComple
 
 
         // limit the number of visible entries
-        mChart.setVisibleXRangeMaximum(5);
+        mChart.setVisibleXRangeMaximum(10);
 
         // if disabled, scaling can be done on x- and y-axis separately
         mChart.setPinchZoom(true);
@@ -304,6 +304,7 @@ public class GraficaBarometro extends AppCompatActivity implements OnLoopjComple
             @Override
             public String getFormattedValue(float value, AxisBase axis) {
 
+
                 return dates.get((int) value);
             }
 
@@ -361,12 +362,13 @@ public class GraficaBarometro extends AppCompatActivity implements OnLoopjComple
 
             if (!mediciones.contains(medicion)) {
                 mediciones.add(medicion);
-            }
+
 
             temperaturas.add(new Entry(Float.valueOf(index), Float.valueOf(medicion.getTemperatura())));
             presiones.add(new Entry(Float.valueOf(index), Float.valueOf(medicion.getPresion())));
             dates.add(fecha); // reduce the string to just 12:13 etc
             index++;
+        }
         }
 
         for (Medicion temporaryMed : mediciones) {
