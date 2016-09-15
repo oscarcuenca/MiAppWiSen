@@ -34,7 +34,6 @@ import com.github.mikephil.charting.formatter.AxisValueFormatter;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -134,7 +133,8 @@ public class GraficaBarometro extends AppCompatActivity implements OnLoopjComple
         xAxis.setTextColor(Color.DKGRAY);
         xAxis.setDrawGridLines(false);
         xAxis.setDrawAxisLine(true);
-
+        xAxis.setDrawGridLines(true);
+        xAxis.setLabelCount(5, true);
 
         // to draw axis line
 
@@ -147,6 +147,7 @@ public class GraficaBarometro extends AppCompatActivity implements OnLoopjComple
         leftAxis.setGranularityEnabled(true);
 
 
+
         YAxis rightAxis = mChart.getAxisRight();
         rightAxis.setTextColor(Color.RED);
         rightAxis.setAxisMaxValue(50f);
@@ -154,7 +155,7 @@ public class GraficaBarometro extends AppCompatActivity implements OnLoopjComple
         rightAxis.setDrawGridLines(false);
         rightAxis.setDrawZeroLine(false);
         rightAxis.setGranularityEnabled(false);
-
+        rightAxis.setDrawGridLines(true);
 
         mediciones = new HashSet<>();
 

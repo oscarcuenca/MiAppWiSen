@@ -25,6 +25,7 @@ import com.amg_eservices.miappwisen.SaltoWeb.WebOficial;
 import com.amg_eservices.miappwisen.UtilitiesGlobal;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.AxisBase;
+import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
@@ -88,8 +89,14 @@ public class GraficaHumedadTemperatura extends AppCompatActivity implements OnLo
         timestamp = new Timestamp(currentTime);
 
         // no description text
-        mChart.setDescription("");
+        mChart.setDescription("[TEMPERATURA : AZUL]      [HUMEDAD : ROJO]                            ");
+
         mChart.setNoDataTextDescription("You need to provide data for the chart.");
+          // Hide or not the description
+        mChart.getAxisLeft().setDrawLabels(true);
+        mChart.getAxisRight().setDrawLabels(true);
+        mChart.getXAxis().setDrawLabels(true);
+        mChart.getLegend().setEnabled(true);
 
         // enable touch gestures
         mChart.setTouchEnabled(true);
@@ -101,6 +108,7 @@ public class GraficaHumedadTemperatura extends AppCompatActivity implements OnLo
         mChart.setScaleEnabled(true);
         mChart.setDrawGridBackground(true);
         mChart.setHighlightPerDragEnabled(true);
+
 
         // limit the number of visible entries
         mChart.setVisibleXRangeMaximum(5);
@@ -115,8 +123,16 @@ public class GraficaHumedadTemperatura extends AppCompatActivity implements OnLo
 
         mChart.animateX(2500);
 
+        Legend l = mChart.getLegend();
+        // modify the legend ...
+        // l.setPosition(LegendPosition.LEFT_OF_CHART);
+        l.setForm(Legend.LegendForm.LINE);
+        //l.setTypeface(mTfLight);
+        l.setTextSize(14f);
+        l.setTextColor(Color.WHITE);
+        l.setPosition(Legend.LegendPosition.BELOW_CHART_LEFT);
+
 // to draw X-axis for our graph
-        ;
 
         XAxis xAxis = mChart.getXAxis();
         xAxis.setTextSize(11f);
@@ -127,33 +143,30 @@ public class GraficaHumedadTemperatura extends AppCompatActivity implements OnLo
         xAxis.setTextColor(Color.DKGRAY);
         xAxis.setDrawGridLines(false);
         xAxis.setDrawAxisLine(true);
+        xAxis.setDrawGridLines(true);
+        xAxis.setLabelCount(5, true);
         // to draw axis line
 
         //modify leftYaxis range similarly others
         YAxis leftAxis = mChart.getAxisLeft();
         leftAxis.setTextColor(ColorTemplate.getHoloBlue());
         leftAxis.setAxisMaxValue(50f);
-        leftAxis.setAxisMinValue(10f);
+        leftAxis.setAxisMinValue(0f);
         leftAxis.setDrawGridLines(false);
         leftAxis.setGranularityEnabled(true);
+        leftAxis.setEnabled(true);
+
 
 
         YAxis rightAxis = mChart.getAxisRight();
         rightAxis.setTextColor(Color.RED);
         rightAxis.setAxisMaxValue(50f);
-        rightAxis.setAxisMinValue(10f);
+        rightAxis.setAxisMinValue(0f);
         rightAxis.setDrawGridLines(false);
         rightAxis.setDrawZeroLine(false);
         rightAxis.setGranularityEnabled(false);
+        rightAxis.setDrawGridLines(true);
 
-
-/*
-        // add data
-        for (int i = 0; i < 480; i++) {
-            labels.add("value "+ String.valueOf(i));
-        }
-        setData();
-  */
 
     }
 
@@ -263,7 +276,6 @@ public class GraficaHumedadTemperatura extends AppCompatActivity implements OnLo
         // create a dataset and give it a type
         //modifications with colour and stuf
         set1 = new LineDataSet(temperature, "temperature");
-
         set1.setAxisDependency(YAxis.AxisDependency.LEFT);
         set1.setColor(ColorTemplate.getHoloBlue());
         set1.setCircleColor(Color.WHITE);
@@ -274,6 +286,9 @@ public class GraficaHumedadTemperatura extends AppCompatActivity implements OnLo
         set1.setHighLightColor(Color.rgb(244, 117, 117));
         set1.setDrawCircleHole(false);
         set1.setMode(LineDataSet.Mode.CUBIC_BEZIER);
+
+
+
 
         //set1.setFillFormatter(new MyFillFormatter(0f));
         //set1.setDrawHorizontalHighlightIndicator(false);
@@ -296,6 +311,7 @@ public class GraficaHumedadTemperatura extends AppCompatActivity implements OnLo
         //set2.setFillFormatter(new MyFillFormatter(900f));
 
 
+
         mChart.getXAxis().setValueFormatter(new AxisValueFormatter() {
             @Override
             public String getFormattedValue(float value, AxisBase axis) {
@@ -311,6 +327,7 @@ public class GraficaHumedadTemperatura extends AppCompatActivity implements OnLo
         ArrayList<ILineDataSet> dataSets = new ArrayList<ILineDataSet>();
         dataSets.add(set1); // add the datasets
         dataSets.add(set2);
+
 
 
 
@@ -365,4 +382,6 @@ public class GraficaHumedadTemperatura extends AppCompatActivity implements OnLo
         // it takes time to recieve time. so we set the map after loop is complete okay?
         //mChart.setVisibleXRangeMaximum(5);
     }
+
+
 }
