@@ -16,18 +16,22 @@ public class Objeto {
     public String marca;
     public String modelo;
     public String correo;
+    public String caja;
+    public String sector;
     public String version;
     public int modificado;
 
 
     public Objeto(String idObjeto, String descripcionNombre,
-                  String marca, String modelo, String correo, String version, int modificado) {
+                  String marca, String modelo, String correo, String caja, String sector, String version, int modificado) {
 
         this.idObjeto = idObjeto;
         this.descripcionNombre = descripcionNombre;
         this.marca = marca;
         this.modelo = modelo;
         this.correo = correo;
+        this.caja = caja;
+        this.sector = sector;
         this.version = version;
         this.modificado = modificado;
     }
@@ -39,6 +43,8 @@ public class Objeto {
         marca = marca == null ? "" : marca;
         modelo = modelo == null ? "" : modelo;
         correo = correo == null ? "" : correo;
+        caja = caja == null ? "" : caja;
+        sector = sector == null ? "" : sector;
         version = version == null ? UTiempo.obtenerTiempo() : version;
         modificado = 0;
 
@@ -64,7 +70,10 @@ public class Objeto {
                 descripcionNombre.equals(otro.descripcionNombre) &&
                 marca.equals(otro.marca) &&
                 modelo.equals(otro.modelo) &&
-                correo.equals(otro.correo);
+                correo.equals(otro.correo) &&
+                caja.equals(otro.caja) &&
+                sector.equals(otro.sector);
+
     }
 }
 

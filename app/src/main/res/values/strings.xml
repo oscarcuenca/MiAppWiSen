@@ -34,6 +34,8 @@
     <string name="hint_campo_texto_modelo">Modelo</string>
     <string name="hint_campo_texto_correo">Correo</string>
     <string name="hint_campo_texto_telefono">Teléfono</string>
+    <string name="hint_campo_texto_caja">Box</string>
+    <string name="hint_campo_texto_sector">Sector</string>
 
     <!-- Tooltips acciones toolbar -->
     <string name="accion_sync">Sincronizar</string>
@@ -154,5 +156,9 @@
     <string name="altitud_titulo">Altitud</string>
     <string name="altitud">metros</string>
     <string name="entrada">Otros Sensores</string>
+    <string name="caja">Tipo Caja</string>
+    <string name="sector">Sector</string>
+    <string name="alarma">Alarmas</string>
+    <string name="prediccion">Predicciones</string>
 
 </resources>

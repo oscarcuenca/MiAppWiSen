@@ -45,6 +45,8 @@ public class ActividadInsercionObjeto extends AppCompatActivity
     private EditText campoModelo;
     private EditText campoCorreo;
     private EditText campoIdObjeto;
+    private EditText campoCaja;
+    private EditText campoSector;
     private ImageButton accesodata;
     private ImageButton accesotabla;
     public final static String EXTRA_ID = "idObjeto";
@@ -67,6 +69,8 @@ public class ActividadInsercionObjeto extends AppCompatActivity
         campoMarca = (EditText) findViewById(R.id.campo_marca);
         campoModelo = (EditText) findViewById(R.id.campo_modelo);
         campoCorreo = (EditText) findViewById(R.id.campo_correo);
+        campoCaja = (EditText) findViewById (R.id.campo_descripcion_caja);
+        campoSector = (EditText) findViewById(R.id.campo_descripcion_sector);
         campoIdObjeto = (EditText) findViewById(R.id.campo_idObjeto);
 
 
@@ -84,15 +88,7 @@ public class ActividadInsercionObjeto extends AppCompatActivity
         }
 
     }
-    /*
-            private void agregarToolbar() {
-                Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-                setSupportActionBar(toolbar);
-                if (getSupportActionBar() != null) {
-                    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-                }
-            }
-    */
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_insercion_objeto, menu);
@@ -128,6 +124,8 @@ public class ActividadInsercionObjeto extends AppCompatActivity
         String modelo = campoModelo.getText().toString();
         String correo = campoCorreo.getText().toString();
         String IdentidadObjeto = campoIdObjeto.getText().toString();
+        String caja = campoCaja.getText().toString();
+        String sector = campoSector.getText().toString();
 
         // Validaciones y pruebas de cordura
         if (!esNombreValido(descripcionNombre)) {
@@ -149,6 +147,8 @@ public class ActividadInsercionObjeto extends AppCompatActivity
             valores.put(Objetos.MARCA_MARCA, marca);
             valores.put(Objetos.MODELO, modelo);
             valores.put(Objetos.CORREO, correo);
+            valores.put(Objetos.CAJA, caja);
+            valores.put(Objetos.SECTOR, sector);
             valores.put(Objetos.VERSION, UTiempo.obtenerTiempo());
 
             // Iniciar inserción|actualización
@@ -181,6 +181,8 @@ public class ActividadInsercionObjeto extends AppCompatActivity
         campoMarca.setText(UConsultas.obtenerString(data, Objetos.MARCA_MARCA));
         campoModelo.setText(UConsultas.obtenerString(data, Objetos.MODELO));
         campoCorreo.setText(UConsultas.obtenerString(data, Objetos.CORREO));
+        campoCaja.setText(UConsultas.obtenerString(data, Objetos.CAJA));
+        campoSector.setText(UConsultas.obtenerString(data, Objetos.SECTOR));
         campoIdObjeto.setText(UConsultas.obtenerString(data, Objetos.ID_OBJETO));
 
     }

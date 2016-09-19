@@ -37,6 +37,8 @@ public class HelperObjetos extends SQLiteOpenHelper {
                         + Contrato.Objetos.MARCA_MARCA + " TEXT,"
                         + Contrato.Objetos.MODELO + " TEXT,"
                         + Contrato.Objetos.CORREO + " TEXT,"
+                        + Contrato.Objetos.CAJA + " TEXT,"
+                        + Contrato.Objetos.SECTOR + " TEXT,"
                         + Contrato.Objetos.VERSION + " DATE DEFAULT CURRENT_TIMESTAMP,"
                         + Contrato.Objetos.INSERTADO + " INTEGER DEFAULT 1,"
                         + Contrato.Objetos.MODIFICADO + " INTEGER DEFAULT 0,"
@@ -49,6 +51,8 @@ public class HelperObjetos extends SQLiteOpenHelper {
         valores.put(Contrato.Objetos.MARCA_MARCA, "philips");
         valores.put(Contrato.Objetos.MODELO, "4444444");
         valores.put(Contrato.Objetos.CORREO, "robertico@mail.com");
+        valores.put(Contrato.Objetos.CAJA, "Caja-WiSen-Atmph");
+        valores.put(Contrato.Objetos.SECTOR, "prueba");
         valores.put(Contrato.Objetos.VERSION, UTiempo.obtenerTiempo());
 
         db.insertOrThrow(Tablas.OBJETO, null, valores);
@@ -60,6 +64,8 @@ public class HelperObjetos extends SQLiteOpenHelper {
         valores.put(Contrato.Objetos.MARCA_MARCA, "abeto");
         valores.put(Contrato.Objetos.MODELO, "0001");
         valores.put(Contrato.Objetos.CORREO, "pablito@mail.com");
+        valores.put(Contrato.Objetos.CAJA, "prueba");
+        valores.put(Contrato.Objetos.SECTOR, "prueba");
         valores.put(Contrato.Objetos.VERSION, UTiempo.obtenerTiempo());
         db.insertOrThrow(Tablas.OBJETO, null, valores);
     }

@@ -27,6 +27,8 @@ public class ProcesadorLocal {
                 Contrato.Objetos.MARCA_MARCA,
                 Contrato.Objetos.MODELO,
                 Contrato.Objetos.CORREO,
+                Contrato.Objetos.CAJA,
+                Contrato.Objetos.SECTOR,
                 Contrato.Objetos.VERSION,
                 Contrato.Objetos.MODIFICADO
         };
@@ -39,6 +41,8 @@ public class ProcesadorLocal {
         int CORREO = 4;
         int VERSION = 5;
         int MODIFICADO = 6;
+        int CAJA = 7;
+        int SECTOR = 8;
 
     }
 
@@ -132,6 +136,8 @@ public class ProcesadorLocal {
                 .withValue(Contrato.Objetos.MARCA_MARCA, objeto.marca)
                 .withValue(Contrato.Objetos.MODELO, objeto.modelo)
                 .withValue(Contrato.Objetos.CORREO, objeto.correo)
+                .withValue(Contrato.Objetos.CAJA, objeto.caja)
+                .withValue(Contrato.Objetos.SECTOR, objeto.sector)
                 .withValue(Contrato.Objetos.VERSION, objeto.version)
                 .withValue(Contrato.Objetos.INSERTADO, 0)
                 .build();
@@ -144,6 +150,8 @@ public class ProcesadorLocal {
                 .withValue(Contrato.Objetos.MARCA_MARCA, match.marca)
                 .withValue(Contrato.Objetos.MODELO, match.modelo)
                 .withValue(Contrato.Objetos.CORREO, match.correo)
+                .withValue(Contrato.Objetos.CAJA, match.caja)
+                .withValue(Contrato.Objetos.SECTOR, match.sector)
                 .withValue(Contrato.Objetos.VERSION, match.version)
                 .withValue(Contrato.Objetos.MODIFICADO, match.modificado)
                 .build();
@@ -162,6 +170,8 @@ public class ProcesadorLocal {
                 c.getString(ConsultaObjetos.MARCA_MARCA),
                 c.getString(ConsultaObjetos.MODELO),
                 c.getString(ConsultaObjetos.CORREO),
+                c.getString(ConsultaObjetos.CAJA),
+                c.getString(ConsultaObjetos.SECTOR),
                 c.getString(ConsultaObjetos.VERSION),
                 c.getInt(ConsultaObjetos.MODIFICADO)
         );

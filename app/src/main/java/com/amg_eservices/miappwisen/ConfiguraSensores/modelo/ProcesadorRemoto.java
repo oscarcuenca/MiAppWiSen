@@ -37,6 +37,8 @@ public class ProcesadorRemoto {
                 Contrato.Objetos.MARCA_MARCA,
                 Contrato.Objetos.MODELO,
                 Contrato.Objetos.CORREO,
+                Contrato.Objetos.CAJA,
+                Contrato.Objetos.SECTOR,
                 Contrato.Objetos.VERSION
 
         };
@@ -180,6 +182,8 @@ public class ProcesadorRemoto {
         UDatos.agregarStringAMapa(mapaObjeto, Contrato.Objetos.MARCA_MARCA, c);
         UDatos.agregarStringAMapa(mapaObjeto, Contrato.Objetos.MODELO, c);
         UDatos.agregarStringAMapa(mapaObjeto, Contrato.Objetos.CORREO, c);
+        UDatos.agregarStringAMapa(mapaObjeto, Contrato.Objetos.CAJA, c);
+        UDatos.agregarStringAMapa(mapaObjeto, Contrato.Objetos.SECTOR, c);
         UDatos.agregarStringAMapa(mapaObjeto, Contrato.Objetos.VERSION, c);
 
         return mapaObjeto;
@@ -196,6 +200,8 @@ public class ProcesadorRemoto {
         UDatos.agregarStringAMapa(mapaObjeto, Contrato.Objetos.MARCA_MARCA, c);
         UDatos.agregarStringAMapa(mapaObjeto, Contrato.Objetos.MODELO, c);
         UDatos.agregarStringAMapa(mapaObjeto, Contrato.Objetos.CORREO, c);
+        UDatos.agregarStringAMapa(mapaObjeto, Contrato.Objetos.CAJA, c);
+        UDatos.agregarStringAMapa(mapaObjeto, Contrato.Objetos.SECTOR, c);
         UDatos.agregarStringAMapa(mapaObjeto, Contrato.Objetos.VERSION, c);
 
         return mapaObjeto;

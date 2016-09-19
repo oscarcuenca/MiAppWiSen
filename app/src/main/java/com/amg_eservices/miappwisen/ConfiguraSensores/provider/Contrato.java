@@ -22,6 +22,8 @@ public class Contrato {
         String MARCA_MARCA = "marca";
         String MODELO = "modelo";
         String CORREO = "correo";
+        String CAJA = "caja";
+        String SECTOR = "sector";
         String MODIFICATO = "udpateStatus";
         String VERSION = "version";
     }
